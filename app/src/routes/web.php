@@ -23,6 +23,9 @@ Route::get('accounts/home', [HomeController::class, 'index']);
 #アカウント一覧画面
 Route::get('accounts/index/{account_id?}', [AccountController::class, 'index']);
 
+#アカウント検索処理
+Route::post('accounts/show', [AccountController::class, 'show']);
+
 #プレイヤー一覧画面
 Route::get('accounts/playerList', [PlayerController::class, 'index']);
 

@@ -8,16 +8,25 @@
     <link rel="stylesheet" href="/app.css">
 </head>
 <body>
-<h1>■{{$title}}</h1>
+<h1>■アカウント一覧</h1>
+<form method="post" action="{{url('accounts/show')}}">
+    @csrf
+    <label for="search"><input class="form-control" type="search" name="search" id="search"
+                               placeholder="名前を入力"></label>
+    <input class="btn btn-info" type="submit" value="検索">
+</form>
+
 <table>
     <thead>
     <tr>
+        <th>ID</th>
         <th>名前</th>
         <th>パスワードハッシュ</th>
     </tr>
     </thead>
     @foreach($accounts as $account)
         <tr>
+            <td>{{$account['id']}}</td>
             <td>{{$account['name']}}</td>
             <td>{{$account['password']}}</td>
         </tr>
