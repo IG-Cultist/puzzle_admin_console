@@ -21,8 +21,8 @@
     @foreach($accounts as $account)
         <tr>
             <td>{{$account['id']}}</td>
-            <td>{{$account['player_name']}}</td>
-            <td>{{$account['item_name']}}</td>
+            <td>{{$account['player_id']}}</td>
+            <td>{{$account['item_id']}}</td>
             <td>{{$account['item_num']}}</td>
         </tr>
     @endforeach
