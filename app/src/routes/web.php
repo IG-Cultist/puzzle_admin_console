@@ -9,7 +9,7 @@ use App\Http\Controllers\PlayerController;
 use Illuminate\Support\Facades\Route;
 
 #ルート(ログイン画面)
-Route::get('/', [LoginController::class, 'index']);
+Route::get('/', [LoginController::class, 'index'])->name('login');
 
 #ログイン処理
 Route::post('accounts/dologin', [LoginController::class, 'dologin']);
@@ -34,3 +34,6 @@ Route::get('accounts/itemList', [ItemController::class, 'index']);
 
 #所持アイテム一覧画面
 Route::get('accounts/playerItemList', [PlayerItemController::class, 'index']);
+
+#アカウント検索処理
+Route::post('accounts/showPlayerItem', [PlayerItemController::class, 'show']);

@@ -17,6 +17,8 @@ return new class extends Migration {
             $table->integer('exp');   //経験値
             $table->integer('life');   //ライフ
             $table->timestamps();
+
+            $table->unique('name');
         });
     }
 

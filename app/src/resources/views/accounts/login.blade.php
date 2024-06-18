@@ -14,12 +14,18 @@
         <div class="col-md-6">
             <form method="post" action="{{url('accounts/dologin')}}">
                 @csrf
-                <label for="name">ユーザネーム:</label><input class="form-control" type="text" name="name" id="name"><br>
-                <label for="password">パスワード:</label><input class="form-control" type="password" name="password" id="password"><br>
+                <label for="name">ユーザネーム:</label><input class="form-control" type="text" name="name"
+                                                              id="name"><br>
+                <label for="password">パスワード:</label><input class="form-control" type="password" name="password"
+                                                                id="password"><br>
                 <label for="button"></label><input class="btn btn-info" type="submit" name="button" id="button">
-                @isset($error)
-                    {{$error}}
-                @endisset
+                @if($errors->any())
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                @endif
             </form>
         </div>
     </div>

@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->timestamps();                         //created_at,updated_at
 
             //$table->index('name');        //インデックス設定
-            $table->unique('name'); //ユニーク制約設定
+            $table->unique('name'); //ユニーク制約設定 自動でindexも付く
         });
     }
 

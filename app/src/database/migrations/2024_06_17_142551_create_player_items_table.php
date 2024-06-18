@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->integer('item_id');     //アイテムid(アイテム名指定用)
             $table->integer('item_num');    //所有アイテム個数
             $table->timestamps();
+
         });
     }
 

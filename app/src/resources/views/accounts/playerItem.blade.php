@@ -9,6 +9,13 @@
 </head>
 <body>
 <h1>■所有アイテム一覧</h1>
+<form method="post" action="{{url('accounts/showPlayerItem')}}">
+    @csrf
+    <label for="search"><input class="form-control" type="search" name="search" id="search"
+                               placeholder="idを入力"></label>
+    <input class="btn btn-info" type="submit" value="検索">
+</form>
+
 <table>
     <thead>
     <tr>
@@ -21,8 +28,8 @@
     @foreach($accounts as $account)
         <tr>
             <td>{{$account['id']}}</td>
-            <td>{{$account['player_id']}}</td>
-            <td>{{$account['item_id']}}</td>
+            <td>{{$account['player_name']}}</td>
+            <td>{{$account['item_name']}}</td>
             <td>{{$account['item_num']}}</td>
         </tr>
     @endforeach

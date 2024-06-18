@@ -17,6 +17,8 @@ return new class extends Migration {
             $table->integer('effect');            //効果値
             $table->string('explain', 100);  //説明
             $table->timestamps();
+
+            $table->unique('name');
         });
     }
 
