@@ -9,51 +9,32 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<h1>■アカウント一覧</h1>
-<form method="post" action="{{url('accounts/show')}}">
+<h1>■所有アイテム一覧</h1>
+<form method="post" action="{{route('accounts.showProp',['id' =>'search'])}}">
     @csrf
     <label for="search"><input class="form-control" type="search" name="search" id="search"
-                               placeholder="名前を入力"></label>
+                               placeholder="ユーザidを入力"></label>
     <input class="btn btn-info" type="submit" value="検索">
 </form>
-<ul>
-    @if(!empty(request()->get('deleted')))
-        <li>{{request()->get('deleted')}}の削除に成功</li>
-    @elseif(!empty(request()->get('updated')))
-        <li>{{request()->get('updated')}}のパスワードを更新</li>
-    @endif
-</ul>
+
 <table>
     <thead>
     <tr>
         <th>ID</th>
-        <th>名前</th>
-        <th>パスワードハッシュ</th>
-        <th>編集</th>
-        <th></th>
+        <th>ユーザー名</th>
+        <th>アイテム名</th>
+        <th>所持個数</th>
     </tr>
     </thead>
     @foreach($accounts as $account)
         <tr>
             <td>{{$account['id']}}</td>
-            <td>{{$account['name']}}</td>
-            <td>{{$account['password']}}</td>
-            <td>
-                <form method="get" action="{{route('accounts.update',['id' =>$account['id']])}}">
-                    @csrf
-                    <input class="btn btn-info" type="submit" value="変更">
-                </form>
-            </td>
-            <td>
-                <form method="post" action="{{route('accounts.destroy',['id' =>$account['id']])}}">
-                    @csrf
-                    <input class="btn btn-info" type="submit" value="削除">
-                </form>
-            </td>
+            <td>{{$account['user_name']}}</td>
+            <td>{{$account['item_name']}}</td>
+            <td>{{$account['item_num']}}</td>
         </tr>
     @endforeach
 </table>
-
 <form method="get" action="{{route('accounts.home')}}">
     @csrf
     <input type="submit" value="戻る">

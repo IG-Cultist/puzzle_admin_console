@@ -10,9 +10,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('players', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 20);  //プレイヤー名
+            $table->string('name', 20);  //ユーザ名
             $table->integer('level');   //レベル
             $table->integer('exp');   //経験値
             $table->integer('life');   //ライフ
@@ -27,6 +27,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('players');
+        Schema::dropIfExists('users');
     }
 };

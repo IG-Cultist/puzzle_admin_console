@@ -11,9 +11,9 @@ class ItemController extends Controller
     public function index(Request $request)
     {
         if (!$request->session()->exists('login')) {
-            return redirect('/');
+            return redirect()->route('login');
         }
         $data = Item::All();
-        return view('accounts/item', ['accounts' => $data]);
+        return view('accounts.item', ['accounts' => $data]);
     }
 }

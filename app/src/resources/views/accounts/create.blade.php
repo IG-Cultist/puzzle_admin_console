@@ -8,24 +8,39 @@
     <link rel="stylesheet" href="/app.css">
 </head>
 <body>
-<h1>ログイン</h1>
+<h1>アカウント新規登録</h1>
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <form method="post" action="{{route('accounts.login')}}">
+            <form method="post" action="{{route('accounts.docreate')}}">
                 @csrf
                 <label for="name">ユーザネーム:</label><input class="form-control" type="text" name="name"
                                                               id="name"><br>
                 <label for="password">パスワード:</label><input class="form-control" type="password" name="password"
                                                                 id="password"><br>
-                <label for="button"></label><input class="btn btn-info" type="submit" name="button" id="button">
-                @if($errors->any())
-                    <ul>
+                <label for="repassword">パスワード再入力:</label><input class="form-control" type="password"
+                                                                        name="repassword"
+                                                                        id="repassword"><br>
+                <label for="button"></label><input class="btn btn-info" type="submit" name="button" id="button"
+                                                   value="登録">
+                <ul>
+                    @if(request()->get('error') === 'alreadyExists')
+                        <li>すでに同じ名前が使われています</li>
+                    @elseif(request()->get('error')  === 'noMatch')
+                        <li>再入力したパスワードと一致しません</li>
+                    @endif
+                    @if($errors->any())
                         @foreach($errors->all() as $error)
                             <li>{{$error}}</li>
                         @endforeach
-                    </ul>
-                @endif
+                    @endif
+                </ul>
+            </form>
+            <form method="get" action="{{route('accounts.home')}}">
+                @csrf
+                <label for="button">
+                    <input class="btn btn-info" type="submit" name="button" id="button" value="戻る">
+                </label>
             </form>
         </div>
     </div>

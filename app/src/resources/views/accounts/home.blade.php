@@ -9,23 +9,35 @@
 </head>
 <body>
 <h1>Welcome ;v)</h1>
-<form method="get" action="{{url('accounts/index')}}">
+<form method="get" action="{{route('accounts.index')}}">
     @csrf
     <input class="btn btn-info" type="submit" value="管理者一覧">
 </form>
-<form method="get" action="{{url('accounts/playerList')}}">
+<form method="get" action="{{route('accounts.user')}}">
     @csrf
-    <input class="btn btn-info" type="submit" value="プレイヤー一覧">
+    <input class="btn btn-info" type="submit" value="ユーザ一覧">
 </form>
-<form method="get" action="{{url('accounts/itemList')}}">
+<form method="get" action="{{route('accounts.item')}}">
     @csrf
     <input class="btn btn-info" type="submit" value="アイテム一覧">
 </form>
-<form method="get" action="{{url('accounts/playerItemList')}}">
+<form method="get" action="{{route('accounts.userItem')}}">
     @csrf
     <input class="btn btn-info" type="submit" value="所持アイテム一覧">
 </form>
-<form method="post" action="{{url('accounts/dologout')}}">
+<form method="get" action="{{route('accounts.receiver')}}">
+    @csrf
+    <input class="btn btn-info" type="submit" value="メール受信者一覧">
+</form>
+<form method="get" action="{{route('accounts.send')}}">
+    @csrf
+    <input class="btn btn-info" type="submit" value="メール送信">
+</form>
+<form method="get" action="{{route('accounts.create')}}">
+    @csrf
+    <input class="btn btn-info" type="submit" value="アカウント新規登録">
+</form>
+<form method="post" action="{{route('accounts.logout')}}">
     @csrf
     <input class="btn btn-info" type="submit" value="ログアウト">
 </form>

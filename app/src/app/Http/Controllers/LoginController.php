@@ -11,7 +11,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('accounts/login');
+        return view('accounts.login');
     }
 
     public function dologin(Request $request)
@@ -29,7 +29,7 @@ class LoginController extends Controller
 
         if (Hash::check($request['password'], $account[0]['password'])) {
             $request->session()->put('login', true);
-            return redirect('accounts/home');
+            return view('accounts.home');
         } else {
             return redirect()->route('login', ['error' => 'invalid']);
         }
@@ -38,6 +38,6 @@ class LoginController extends Controller
     public function dologout(Request $request)
     {
         $request->session()->forget('login');
-        return redirect('/');
+        return redirect()->route('login');
     }
 }

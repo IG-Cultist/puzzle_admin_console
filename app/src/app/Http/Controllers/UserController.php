@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Player;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class PlayerController extends Controller
+class UserController extends Controller
 {
     #プレイヤー一覧を表示
     public function index(Request $request)
     {
         if (!$request->session()->exists('login')) {
-            return redirect('/');
+            return redirect()->route('login');
         }
-        $data = Player::All();
-        return view('accounts/player', ['accounts' => $data]);
+        $data = User::All();
+        return view('accounts.user', ['accounts' => $data]);
     }
 }

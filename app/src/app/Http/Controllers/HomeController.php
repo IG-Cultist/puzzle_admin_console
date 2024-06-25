@@ -12,6 +12,6 @@ class HomeController extends Controller
         if (!$request->session()->exists('login')) {
             return redirect('/');
         }
-        return view('accounts/home');
+        return view('accounts.home');
     }
 }

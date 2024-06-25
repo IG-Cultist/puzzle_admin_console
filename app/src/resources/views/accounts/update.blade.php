@@ -8,17 +8,24 @@
     <link rel="stylesheet" href="/app.css">
 </head>
 <body>
-<h1>ログイン</h1>
+<h1>パスワードの変更</h1>
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <form method="post" action="{{route('accounts.login')}}">
+            <form method="post" action="{{route('accounts.edit',['id' =>$request])}}">
                 @csrf
-                <label for="name">ユーザネーム:</label><input class="form-control" type="text" name="name"
-                                                              id="name"><br>
-                <label for="password">パスワード:</label><input class="form-control" type="password" name="password"
-                                                                id="password"><br>
-                <label for="button"></label><input class="btn btn-info" type="submit" name="button" id="button">
+                <label for="password">
+                    パスワード:
+                    <input class="form-control" type="password" name="password" id="password">
+                </label><br>
+                <label for="password">
+                    パスワード再入力:
+                    <input class="form-control" type="password"
+                           name="password_confirmation" id="password_confirmation">
+                </label><br>
+                <label for="button">
+                    <input class="btn btn-info" type="submit" name="button" id="button">
+                </label>
                 @if($errors->any())
                     <ul>
                         @foreach($errors->all() as $error)

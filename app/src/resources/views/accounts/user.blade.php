@@ -6,40 +6,36 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="/app.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<h1>■所有アイテム一覧</h1>
-<form method="post" action="{{url('accounts/showPlayerItem')}}">
-    @csrf
-    <label for="search"><input class="form-control" type="search" name="search" id="search"
-                               placeholder="idを入力"></label>
-    <input class="btn btn-info" type="submit" value="検索">
-</form>
-
+<h1>■ユーザ一覧</h1>
 <table>
     <thead>
     <tr>
         <th>ID</th>
-        <th>プレイヤー名</th>
-        <th>アイテム名</th>
-        <th>所持個数</th>
+        <th>名前</th>
+        <th>レベル</th>
+        <th>経験値</th>
+        <th>ライフ</th>
     </tr>
     </thead>
     @foreach($accounts as $account)
         <tr>
             <td>{{$account['id']}}</td>
-            <td>{{$account['player_name']}}</td>
-            <td>{{$account['item_name']}}</td>
-            <td>{{$account['item_num']}}</td>
+            <td>{{$account['name']}}</td>
+            <td>{{$account['level']}}</td>
+            <td>{{$account['exp']}}</td>
+            <td>{{$account['life']}}</td>
         </tr>
     @endforeach
 </table>
-<form method="get" action="{{url('accounts/home')}}">
+<form method="get" action="{{route('accounts.home')}}">
     @csrf
     <input type="submit" value="戻る">
 </form>
-</body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
+</body>
 </html>
