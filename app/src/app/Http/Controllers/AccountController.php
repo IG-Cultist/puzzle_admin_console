@@ -13,7 +13,8 @@ class AccountController extends Controller
     #========================
     public function index()
     {
-        $accounts = Account::All();
+        //$accounts = Account::All();
+        $accounts = Account::simplePaginate(10); //指定値以下の場合、表示されない
         return view('accounts.index', ['accounts' => $accounts]);
     }
 
@@ -93,6 +94,7 @@ class AccountController extends Controller
         ]);
 
         $account = Account::findOrFail($request->id);
+        $account->password = Hash::make($request->password);
         $account->save();
 
         return redirect()->route('accounts.index', ['updated' => $account->name]);

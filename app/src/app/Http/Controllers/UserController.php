@@ -13,7 +13,8 @@ class UserController extends Controller
         if (!$request->session()->exists('login')) {
             return redirect()->route('login');
         }
-        $data = User::All();
+        //$data = User::All();
+        $data = User::paginate(10);
         return view('accounts.user', ['accounts' => $data]);
     }
 }

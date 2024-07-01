@@ -9,56 +9,57 @@ use App\Http\Controllers\ReceiverController;
 use App\Http\Controllers\UserItemController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AuthMiddleware;
+use App\Http\Middleware\NoCacheMiddleWare;
 use Illuminate\Support\Facades\Route;
 
-#--------------
-# GET
-#--------------
-// アカウントコントローラーの処理をグループ化
-Route::prefix('accounts')->name('accounts.')->controller(AccountController::class)
-    ->middleware(AuthMiddleware::class)->group(function () {
-        Route::get('create', 'create')->name('create');          #新規作成画面
-        Route::get('store', 'store')->name('store');             #作成完了画面
-        Route::get('index', 'index')->name('index');             #一覧画面
-        Route::get('{id}/update', 'update')->name('update');     #更新画面
+# キャッシュ保存無効化
+Route::middleware(NoCacheMiddleWare::class)->group(function () {
 
-        Route::post('{id}/destroy', 'destroy')->name('destroy'); #削除処理
-        Route::post('{id}/edit', 'edit')->name('edit');          #編集処理
-        Route::post('show', 'show')->name('show');               #検索処理
-        Route::post('docreate', 'docreate')->name('docreate');   #新規作成処理
-    });
+# アカウントコントローラーの処理をグループ化
+    Route::prefix('accounts')->name('accounts.')->controller(AccountController::class)
+        ->middleware(AuthMiddleware::class)->group(function () {
+            Route::get('create', 'create')->name('create');          #新規作成画面
+            Route::get('store', 'store')->name('store');             #作成完了画面
+            Route::get('index', 'index')->name('index');             #一覧画面
+            Route::get('{id}/update', 'update')->name('update');     #更新画面
 
-#ルート(ログイン画面)
-Route::get('/', [LoginController::class, 'index'])->name('login');
+            Route::post('{id}/destroy', 'destroy')->name('destroy'); #削除処理
+            Route::post('{id}/edit', 'edit')->name('edit');          #編集処理
+            Route::post('show', 'show')->name('show');               #検索処理
+            Route::post('docreate', 'docreate')->name('docreate');   #新規作成処理
+        });
 
-#ホーム画面
-Route::get('accounts/home', [HomeController::class, 'index'])->name('accounts.home');
+# ルート(ログイン画面)
+    Route::get('/', [LoginController::class, 'index'])->name('login');
 
-#プレイヤー一覧画面
-Route::get('accounts/userList', [UserController::class, 'index'])->name('accounts.user');
+# ホーム画面
+    Route::get('accounts/home', [HomeController::class, 'index'])->name('accounts.home');
 
-#アイテム一覧画面
-Route::get('accounts/itemList', [ItemController::class, 'index'])->name('accounts.item');
+# プレイヤー一覧画面
+    Route::get('accounts/userList', [UserController::class, 'index'])->name('accounts.user');
 
-#所持アイテム一覧画面
-Route::get('accounts/userItemList', [UserItemController::class, 'index'])->name('accounts.userItem');
+# アイテム一覧画面
+    Route::get('accounts/itemList', [ItemController::class, 'index'])->name('accounts.item');
 
-#所持アイテム一覧画面
-Route::get('accounts/receiver', [ReceiverController::class, 'index'])->name('accounts.receiver');
+# 所持アイテム一覧画面
+    Route::get('accounts/userItemList', [UserItemController::class, 'index'])->name('accounts.userItem');
 
-#メール送信フォーム
-Route::get('accounts/send', [MailController::class, 'index'])->name('accounts.send');
-#--------------
-# POST
-#--------------
-#ログイン処理
-Route::post('accounts/dologin', [LoginController::class, 'dologin'])->name('accounts.login');
+# 所持アイテム一覧画面
+    Route::get('accounts/receiver', [ReceiverController::class, 'index'])->name('accounts.receiver');
 
-#ログアウト処理
-Route::post('accounts/dologout', [LoginController::class, 'dologout'])->name('accounts.logout');
+# メール送信フォーム
+    Route::get('accounts/send', [MailController::class, 'index'])->name('accounts.send');
 
-#所持アイテム検索処理
-Route::post('accounts/{id}/showProp', [UserItemController::class, 'show'])->name('accounts.showProp');
 
-#ログイン処理
-Route::post('accounts/sendMail', [MailController::class, 'sendMail'])->name('accounts.sendMail');
+# ログイン処理
+    Route::post('accounts/dologin', [LoginController::class, 'dologin'])->name('accounts.login');
+
+# ログアウト処理
+    Route::post('accounts/dologout', [LoginController::class, 'dologout'])->name('accounts.logout');
+
+# 所持アイテム検索処理
+    Route::post('accounts/{id}/showProp', [UserItemController::class, 'show'])->name('accounts.showProp');
+
+# ログイン処理
+    Route::post('accounts/sendMail', [MailController::class, 'sendMail'])->name('accounts.sendMail');
+});
