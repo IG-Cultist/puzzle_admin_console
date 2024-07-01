@@ -12,7 +12,7 @@
                 </ul>
                 <form method="post" action="{{route('accounts.sendMail')}}">
                     @csrf
-                    <label for="user_id">ユーザID</label>
+                    <label for="user_id">ユーザID(全ユーザに送る場合は"ALL"と入力)</label>
                     <input class="form-control" type="text" name="user_id" id="user_id"
                            placeholder="送信先ユーザID"><br>
 
@@ -20,10 +20,10 @@
                     <input class="form-control" type="text" name="mail_id"
                            id="mail_id" placeholder="送信するメールID"><br>
 
-                    <label for="button">
-                        <input class="btn btn-info" type="submit" name="button"
-                               id="button" value="送信">
-                    </label>
+                    <label for="button"></label>
+                    <input class="btn btn-info" type="submit" name="button"
+                           id="button" value="送信">
+
                 </form>
             </div>
         </div>

@@ -13,6 +13,8 @@ return new class extends Migration {
             $table->integer('mail_id'); //メールID(text取得用)
             $table->boolean('isOpen');  //確認済み判定
             $table->timestamps();
+
+            $table->index(['user_id', 'mail_id']);
         });
     }
 

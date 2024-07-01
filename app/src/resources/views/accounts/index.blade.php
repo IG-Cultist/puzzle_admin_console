@@ -23,7 +23,6 @@
             <th>名前</th>
             <th>パスワードハッシュ</th>
             <th>編集</th>
-            <th></th>
         </tr>
         </thead>
         @foreach($accounts as $account)
@@ -36,19 +35,16 @@
                         @csrf
                         <input class="btn btn-info" type="submit" value="変更">
                     </form>
-                </td>
-                <td>
-                    <form method="post" action="{{route('accounts.destroy',['id' =>$account['id']])}}">
-                        @csrf
-                        <input class="btn btn-info" type="submit" value="削除">
-                    </form>
+
+                    @if($nowUser !== $account['name'])
+                        <form method="post" action="{{route('accounts.destroy',['id' =>$account['id']])}}">
+                            @csrf
+                            <input class="btn btn-info" type="submit" value="削除">
+                        </form>
+                    @endif
                 </td>
             </tr>
         @endforeach
     </table>
     {{$accounts->links()}}
-    <form method="get" action="{{route('accounts.home')}}">
-        @csrf
-        <input type="submit" value="戻る">
-    </form>
 @endsection

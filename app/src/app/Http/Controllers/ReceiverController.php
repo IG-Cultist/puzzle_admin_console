@@ -22,7 +22,6 @@ class ReceiverController extends Controller
             ->join('mails', 'receivers.mail_id', '=', 'mails.id')
             ->join('items', 'mails.item_id', '=', 'items.id')
             ->get();
-
         return view('accounts.receiver', ['accounts' => $data]);
     }
 }

@@ -29,12 +29,6 @@
                         @endif
                     </ul>
                 </form>
-                <form method="get" action="{{route('accounts.home')}}">
-                    @csrf
-                    <label for="button">
-                        <input class="btn btn-info" type="submit" name="button" id="button" value="戻る">
-                    </label>
-                </form>
             </div>
         </div>
     </div>

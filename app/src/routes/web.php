@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AccountController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MailController;
@@ -12,7 +11,7 @@ use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\NoCacheMiddleWare;
 use Illuminate\Support\Facades\Route;
 
-# キャッシュ保存無効化
+# キャッシュ無効化
 Route::middleware(NoCacheMiddleWare::class)->group(function () {
 
 # アカウントコントローラーの処理をグループ化
@@ -31,9 +30,6 @@ Route::middleware(NoCacheMiddleWare::class)->group(function () {
 
 # ルート(ログイン画面)
     Route::get('/', [LoginController::class, 'index'])->name('login');
-
-# ホーム画面
-    Route::get('accounts/home', [HomeController::class, 'index'])->name('accounts.home');
 
 # プレイヤー一覧画面
     Route::get('accounts/userList', [UserController::class, 'index'])->name('accounts.user');

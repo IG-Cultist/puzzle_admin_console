@@ -30,8 +30,4 @@
             </tr>
         @endforeach
     </table>
-    <form method="get" action="{{route('accounts.home')}}">
-        @csrf
-        <input type="submit" value="戻る">
-    </form>
 @endsection

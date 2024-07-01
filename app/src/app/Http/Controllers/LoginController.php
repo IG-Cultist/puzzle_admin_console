@@ -29,7 +29,7 @@ class LoginController extends Controller
 
         if (Hash::check($request['password'], $account[0]['password'])) {
             $request->session()->put('login', true);
-            return view('accounts.home');
+            return redirect()->route('accounts.index', ['nowUser' => $request['name']]);
         } else {
             return redirect()->route('login', ['error' => 'invalid']);
         }

@@ -2,7 +2,7 @@
 @section('title','ユーザ一覧')
 @section('user','active')
 @section('body')
-    {{$accounts->links('vendor.pagination.bootstrap-5')}}
+    {{$accounts->onEachSide(1)->links('vendor.pagination.bootstrap-5')}}
     <table>
         <thead>
         <tr>
@@ -23,9 +23,5 @@
             </tr>
         @endforeach
     </table>
-    {{$accounts->links('vendor.pagination.bootstrap-5')}}
-    <form method="get" action="{{route('accounts.home')}}">
-        @csrf
-        <input type="submit" value="戻る">
-    </form>
+    {{$accounts->onEachSide(1)->links('vendor.pagination.bootstrap-5')}}
 @endsection

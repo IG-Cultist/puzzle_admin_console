@@ -11,11 +11,12 @@ class AccountController extends Controller
     #========================
     # アカウント一覧画面
     #========================
-    public function index()
+    public function index(Request $request)
     {
+        $nowUser = $request->nowUser;
         //$accounts = Account::All();
         $accounts = Account::simplePaginate(10); //指定値以下の場合、表示されない
-        return view('accounts.index', ['accounts' => $accounts]);
+        return view('accounts.index', ['accounts' => $accounts, 'nowUser' => $nowUser]);
     }
 
     #========================

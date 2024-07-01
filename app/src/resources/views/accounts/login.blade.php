@@ -11,21 +11,32 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
-            <form method="post" action="{{route('accounts.login')}}">
-                @csrf
-                <label for="name">ユーザネーム:</label><input class="form-control" type="text" name="name"
-                                                              id="name"><br>
-                <label for="password">パスワード:</label><input class="form-control" type="password" name="password"
-                                                                id="password"><br>
-                <label for="button"></label><input class="btn btn-info" type="submit" name="button" id="button">
-                @if($errors->any())
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li>{{$error}}</li>
-                        @endforeach
-                    </ul>
-                @endif
-            </form>
+            <main class="form-signin w-100 m-auto">
+                <form method="post" action="{{route('accounts.login')}}">
+                    @csrf
+                    <img class="mb-4" src="/Floppa.png" alt="" width="72" height="57">
+                    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+                    <div class="form-floating">
+                        <input class="form-control" type="text" name="name" id="floatingInput" placeholder="Name">
+                        <label for="floatingInput">Name</label>
+                    </div>
+                    <div class="form-floating">
+                        <input class="form-control" type="password" name="password" id="floatingPassword"
+                               placeholder="Password">
+                        <label for="floatingPassword">Password</label>
+                    </div>
+
+                    <button class="btn btn-primary w-100 py-2" type="submit" name="button" id="button">Sign in</button>
+                    @if($errors->any())
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </form>
+            </main>
         </div>
     </div>
 </div>
