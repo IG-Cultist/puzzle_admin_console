@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('receivers', function (Blueprint $table) {
+        Schema::create('user_mails', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id'); //ユーザID(name取得用)
             $table->integer('mail_id'); //メールID(text取得用)
@@ -20,6 +20,6 @@ return new class extends Migration {
 
     public function down(): void
     {
-        Schema::dropIfExists('receivers');
+        Schema::dropIfExists('user_mails');
     }
 };

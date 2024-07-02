@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Receiver;
+use App\Models\UserMail;
 use Illuminate\Http\Request;
 
-class ReceiverController extends Controller
+class UserMailController extends Controller
 {
     #========================
     # メール受信者一覧画面
@@ -16,12 +16,12 @@ class ReceiverController extends Controller
             return redirect()->route('login');
         }
         // 必要なカラムを取得
-        $data = Receiver::select('receivers.id', 'users.name as user_name', 'mails.text as mail_txt',
-            'items.name as item_name', 'mails.item_sum', 'receivers.isOpen')
-            ->join('users', 'receivers.user_id', '=', 'users.id')
-            ->join('mails', 'receivers.mail_id', '=', 'mails.id')
+        $data = UserMail::select('user_mails.id', 'users.name as user_name', 'mails.text as mail_txt',
+            'items.name as item_name', 'mails.item_sum', 'user_mails.isOpen')
+            ->join('users', 'user_mails.user_id', '=', 'users.id')
+            ->join('mails', 'user_mails.mail_id', '=', 'mails.id')
             ->join('items', 'mails.item_id', '=', 'items.id')
             ->get();
-        return view('accounts.receiver', ['accounts' => $data]);
+        return view('accounts.userMail', ['accounts' => $data]);
     }
 }

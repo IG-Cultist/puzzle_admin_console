@@ -15,7 +15,7 @@ class AccountController extends Controller
     {
         $nowUser = $request->nowUser;
         //$accounts = Account::All();
-        $accounts = Account::simplePaginate(10); //指定値以下の場合、表示されない
+        $accounts = Account::simplePaginate(10); # 指定値以下の場合、表示されない
         return view('accounts.index', ['accounts' => $accounts, 'nowUser' => $nowUser]);
     }
 
@@ -54,23 +54,23 @@ class AccountController extends Controller
             'password' => ['required']
         ]);
 
-        //アカウントテーブルから入力されたnameを取得
+        # アカウントテーブルから入力されたnameを取得
         $account = Account::where('name', '=', $request['name'])->get();
 
-        //すでにその名前が存在していた場合、再入力
+        # すでにその名前が存在していた場合、再入力
         if ($account->count() !== 0) {
             return redirect()->route('create', ['error' => 'alreadyExists']);
         }
 
-        //パスワードと再入力したパスワードが異なる場合、再入力
+        # パスワードと再入力したパスワードが異なる場合、再入力
         if ($request['password'] !== $request['repassword']) {
             return redirect()->route('accounts.create', ['error' => 'noMatch']);
         }
 
-        //名前とハッシュ化したパスワードを登録
+        # 名前とハッシュ化したパスワードを登録
         Account::create(['name' => $request['name'], 'password' => Hash::make($request['password'])]);
 
-        //完了ページへリダイレクト
+        # 完了ページへリダイレクト
         return view('accounts.created');
     }
 

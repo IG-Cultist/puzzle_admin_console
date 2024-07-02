@@ -4,7 +4,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MailController;
-use App\Http\Controllers\ReceiverController;
+use App\Http\Controllers\UserMailController;
 use App\Http\Controllers\UserItemController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AuthMiddleware;
@@ -41,11 +41,13 @@ Route::middleware(NoCacheMiddleWare::class)->group(function () {
     Route::get('accounts/userItemList', [UserItemController::class, 'index'])->name('accounts.userItem');
 
 # 所持アイテム一覧画面
-    Route::get('accounts/receiver', [ReceiverController::class, 'index'])->name('accounts.receiver');
+    Route::get('accounts/userMail', [UserMailController::class, 'index'])->name('accounts.userMail');
+
+# メール一覧画面
+    Route::get('accounts/mailList', [MailController::class, 'index'])->name('accounts.mailList');
 
 # メール送信フォーム
-    Route::get('accounts/send', [MailController::class, 'index'])->name('accounts.send');
-
+    Route::get('accounts/send', [MailController::class, 'send'])->name('accounts.send');
 
 # ログイン処理
     Route::post('accounts/dologin', [LoginController::class, 'dologin'])->name('accounts.login');

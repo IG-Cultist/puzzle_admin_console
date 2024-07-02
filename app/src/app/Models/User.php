@@ -12,4 +12,13 @@ class User extends Model
     protected $guarded = [ //更新しないカラムを指定 idなどのauto_incrementのついているもの
         'id'
     ];
+
+    public function items()
+    {
+        return $this->belongsToMany(
+            Item::class, 'user_items',
+            'user_id',
+            'item_id')
+            ->withPivot('item_num');
+    }
 }
