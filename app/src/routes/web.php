@@ -4,6 +4,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\SocialController;
 use App\Http\Controllers\UserMailController;
 use App\Http\Controllers\UserItemController;
 use App\Http\Controllers\UserController;
@@ -48,6 +49,10 @@ Route::middleware(NoCacheMiddleWare::class)->group(function () {
 
 # メール送信フォーム
     Route::get('accounts/send', [MailController::class, 'send'])->name('accounts.send');
+
+# メール送信フォーム
+    Route::get('accounts/social', [SocialController::class, 'index'])->name('accounts.social');
+
 
 # ログイン処理
     Route::post('accounts/dologin', [LoginController::class, 'dologin'])->name('accounts.login');

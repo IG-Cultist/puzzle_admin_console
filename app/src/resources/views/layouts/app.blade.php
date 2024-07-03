@@ -81,10 +81,17 @@
                             </form>
                         </li>
                         <li>
-                            <form method="get" action="{{route('accounts.receiver')}}">
+                            <form method="get" action="{{route('accounts.userMail')}}">
                                 @csrf
                                 <input class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                                        type="submit" value="メール受信者">
+                            </form>
+                        </li>
+                        <li>
+                            <form method="get" action="{{route('accounts.social')}}">
+                                @csrf
+                                <input class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                       type="submit" value="ソーシャル">
                             </form>
                         </li>
                     </ul>
