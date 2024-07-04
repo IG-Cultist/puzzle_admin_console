@@ -29,6 +29,14 @@ Route::middleware(NoCacheMiddleWare::class)->group(function () {
             Route::post('docreate', 'docreate')->name('docreate');   #新規作成処理
         });
 
+    # ソーシャルコントローラの処理をグループ化
+    Route::prefix('socials')->name('socials.')->controller(SocialController::class)
+        ->group(function () {
+            Route::get('social', 'index')->name('social');   #一覧画面
+
+            Route::post('show', 'show')->name('show');   #検索処理
+        });
+
 # ルート(ログイン画面)
     Route::get('/', [LoginController::class, 'index'])->name('login');
 
@@ -50,9 +58,6 @@ Route::middleware(NoCacheMiddleWare::class)->group(function () {
 # メール送信フォーム
     Route::get('accounts/send', [MailController::class, 'send'])->name('accounts.send');
 
-# メール送信フォーム
-    Route::get('accounts/social', [SocialController::class, 'index'])->name('accounts.social');
-
 
 # ログイン処理
     Route::post('accounts/dologin', [LoginController::class, 'dologin'])->name('accounts.login');
@@ -63,6 +68,6 @@ Route::middleware(NoCacheMiddleWare::class)->group(function () {
 # 所持アイテム検索処理
     Route::post('accounts/{id}/showProp', [UserItemController::class, 'show'])->name('accounts.showProp');
 
-# ログイン処理
+# メール送信処理
     Route::post('accounts/sendMail', [MailController::class, 'sendMail'])->name('accounts.sendMail');
 });

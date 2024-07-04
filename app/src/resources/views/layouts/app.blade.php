@@ -88,7 +88,7 @@
                             </form>
                         </li>
                         <li>
-                            <form method="get" action="{{route('accounts.social')}}">
+                            <form method="get" action="{{route('socials.social')}}">
                                 @csrf
                                 <input class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                                        type="submit" value="ソーシャル">
