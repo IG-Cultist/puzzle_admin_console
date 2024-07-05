@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Social extends Model
+class Follow extends Model
 {
     use HasFactory;
 
@@ -13,12 +13,4 @@ class Social extends Model
         'id'
     ];
 
-    public function items()
-    {
-        return $this->belongsToMany(
-            Item::class, 'user_items',
-            'user_id',
-            'item_id')
-            ->withPivot('item_num');
-    }
 }

@@ -7,19 +7,19 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('socials', function (Blueprint $table) {
+        Schema::create('follows', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');           //ユーザID
-            $table->string('locate', 20);   //所在地
-            $table->text('last_login');     //最終ログイン日時
+            $table->integer('user_id');     //ユーザID
+            $table->integer('follow_id');   //フォロー先ユーザID
             $table->timestamps();
 
-            $table->unique('user_id');
+
+            $table->index('user_id');
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('socials');
+        Schema::dropIfExists('follows');
     }
 };

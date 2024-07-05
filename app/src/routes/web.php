@@ -33,7 +33,7 @@ Route::middleware(NoCacheMiddleWare::class)->group(function () {
     Route::prefix('socials')->name('socials.')->controller(SocialController::class)
         ->middleware(AuthMiddleware::class)->group(function () {
             Route::get('social', 'index')->name('social');   #一覧画面
-
+            Route::get('list', 'list')->name('list');   #フォローリスト画面
             Route::post('show', 'show')->name('show');   #検索処理
         });
 

@@ -94,6 +94,13 @@
                                        type="submit" value="ソーシャル">
                             </form>
                         </li>
+                        <li>
+                            <form method="get" action="{{route('socials.list')}}">
+                                @csrf
+                                <input class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                       type="submit" value="フォローリスト">
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </li>
