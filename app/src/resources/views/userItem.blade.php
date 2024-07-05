@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <form method="post" action="{{route('accounts.showProp',['id' =>'search'])}}">
+                <form method="post" action="{{route('userItems.show',['id' =>'search'])}}">
                     @csrf
                     <label for="search"><input class="form-control" type="search" name="search" id="search"
                                                placeholder="ユーザidを入力"></label>

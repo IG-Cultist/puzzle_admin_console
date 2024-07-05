@@ -14,6 +14,6 @@ class ItemController extends Controller
             return redirect()->route('login');
         }
         $data = Item::All();
-        return view('accounts.item', ['accounts' => $data]);
+        return view('item', ['accounts' => $data]);
     }
 }

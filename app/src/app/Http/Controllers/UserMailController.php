@@ -22,6 +22,6 @@ class UserMailController extends Controller
             ->join('mails', 'user_mails.mail_id', '=', 'mails.id')
             ->join('items', 'mails.item_id', '=', 'items.id')
             ->get();
-        return view('accounts.userMail', ['accounts' => $data]);
+        return view('userMail', ['accounts' => $data]);
     }
 }

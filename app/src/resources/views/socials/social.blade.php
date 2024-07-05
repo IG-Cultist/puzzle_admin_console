@@ -14,7 +14,7 @@
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>ユーザID</th>
+                        <th>ユーザ名</th>
                         <th>フォロー数</th>
                         <th>フォロワー数</th>
                         <th>所在地</th>

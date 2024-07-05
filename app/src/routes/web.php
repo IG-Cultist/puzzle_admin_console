@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 # キャッシュ無効化
 Route::middleware(NoCacheMiddleWare::class)->group(function () {
 
-# アカウントコントローラーの処理をグループ化
+    # アカウントコントローラーの処理をグループ化
     Route::prefix('accounts')->name('accounts.')->controller(AccountController::class)
         ->middleware(AuthMiddleware::class)->group(function () {
             Route::get('create', 'create')->name('create');          #新規作成画面
@@ -31,43 +31,54 @@ Route::middleware(NoCacheMiddleWare::class)->group(function () {
 
     # ソーシャルコントローラの処理をグループ化
     Route::prefix('socials')->name('socials.')->controller(SocialController::class)
-        ->group(function () {
+        ->middleware(AuthMiddleware::class)->group(function () {
             Route::get('social', 'index')->name('social');   #一覧画面
 
             Route::post('show', 'show')->name('show');   #検索処理
         });
 
-# ルート(ログイン画面)
+    # メールコントローラの処理をグループ化
+    Route::prefix('mails')->name('mails.')->controller(MailController::class)
+        ->middleware(AuthMiddleware::class)->group(function () {
+            # 一覧画面
+            Route::get('index', 'index')->name('index');
+
+            # 送信フォーム
+            Route::get('send', 'send')->name('send');
+
+            # 送信処理
+            Route::post('sendMail', 'sendMail')->name('sendMail');
+        });
+
+    # ログインコントローラの処理をグループ化
+    Route::prefix('login')->name('login.')->controller(LoginController::class)
+        ->group(function () {
+            # ログイン処理
+            Route::post('login', 'dologin')->name('login');
+
+            # ログアウト処理
+            Route::post('logout', 'dologout')->name('logout');
+        });
+
+    # 所有アイテムコントローラの処理をグループ化
+    Route::prefix('userItems')->name('userItems.')->controller(UserItemController::class)
+        ->middleware(AuthMiddleware::class)->group(function () {
+            # 一覧画面
+            Route::get('index', 'index')->name('index');
+
+            # 検索処理
+            Route::post('{id}/show', 'show')->name('show');
+        });
+
+    # ログイン画面
     Route::get('/', [LoginController::class, 'index'])->name('login');
 
-# プレイヤー一覧画面
-    Route::get('accounts/userList', [UserController::class, 'index'])->name('accounts.user');
+    # プレイヤー一覧画面
+    Route::get('userList', [UserController::class, 'index'])->name('user.index');
 
-# アイテム一覧画面
-    Route::get('accounts/itemList', [ItemController::class, 'index'])->name('accounts.item');
+    # アイテム一覧画面
+    Route::get('itemList', [ItemController::class, 'index'])->name('item.index');
 
-# 所持アイテム一覧画面
-    Route::get('accounts/userItemList', [UserItemController::class, 'index'])->name('accounts.userItem');
-
-# 所持アイテム一覧画面
-    Route::get('accounts/userMail', [UserMailController::class, 'index'])->name('accounts.userMail');
-
-# メール一覧画面
-    Route::get('accounts/mailList', [MailController::class, 'index'])->name('accounts.mailList');
-
-# メール送信フォーム
-    Route::get('accounts/send', [MailController::class, 'send'])->name('accounts.send');
-
-
-# ログイン処理
-    Route::post('accounts/dologin', [LoginController::class, 'dologin'])->name('accounts.login');
-
-# ログアウト処理
-    Route::post('accounts/dologout', [LoginController::class, 'dologout'])->name('accounts.logout');
-
-# 所持アイテム検索処理
-    Route::post('accounts/{id}/showProp', [UserItemController::class, 'show'])->name('accounts.showProp');
-
-# メール送信処理
-    Route::post('accounts/sendMail', [MailController::class, 'sendMail'])->name('accounts.sendMail');
+    # 受信者一覧画面
+    Route::get('userMail', [UserMailController::class, 'index'])->name('userMail.index');
 });

@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-6">
             <main class="form-signin w-100 m-auto">
-                <form method="post" action="{{route('accounts.login')}}">
+                <form method="post" action="{{route('login.login')}}">
                     @csrf
                     <img class="mb-4" src="/Floppa.png" alt="" width="72" height="57">
                     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>

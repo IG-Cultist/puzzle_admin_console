@@ -10,7 +10,7 @@
                         <li>送信完了</li>
                     @endif
                 </ul>
-                <form method="post" action="{{route('accounts.sendMail')}}">
+                <form method="post" action="{{route('mails.sendMail')}}">
                     @csrf
                     <label for="user_id">ユーザID(全ユーザに送る場合は"ALL"と入力)</label>
                     <input class="form-control" type="text" name="user_id" id="user_id"

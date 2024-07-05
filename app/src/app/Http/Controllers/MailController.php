@@ -11,26 +11,17 @@ class MailController extends Controller
 {
     public function index(Request $request)
     {
-        if (!$request->session()->exists('login')) {
-            return redirect()->route('login');
-        }
         $data = Mail::All();
-        return view('accounts.mail', ['mails' => $data]);
+        return view('mails.mail', ['mails' => $data]);
     }
 
     public function send(Request $request)
     {
-        if (!$request->session()->exists('login')) {
-            return redirect()->route('login');
-        }
-        return view('accounts.send');
+        return view('mails.send');
     }
 
     public function sendMail(Request $request)
     {
-        if (!$request->session()->exists('login')) {
-            return redirect()->route('login');
-        }
         if ($request->user_id === "ALL") { #全送信
             # メールテーブルから入力したIDの情報を取得
             $isMailExist = Mail::where('id', '=', $request['mail_id'])->get();
@@ -68,6 +59,6 @@ class MailController extends Controller
         }
 
         # 完了ページへリダイレクト
-        return redirect()->route('accounts.send', ['send' => 'success']);
+        return redirect()->route('mails.send', ['send' => 'success']);
     }
 }

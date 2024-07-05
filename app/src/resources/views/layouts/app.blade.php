@@ -36,21 +36,21 @@
                             </form>
                         </li>
                         <li>
-                            <form method="get" action="{{route('accounts.item')}}">
+                            <form method="get" action="{{route('item.index')}}">
                                 @csrf
                                 <input class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                                        type="submit" value="アイテム">
                             </form>
                         </li>
                         <li>
-                            <form method="get" action="{{route('accounts.send')}}">
+                            <form method="get" action="{{route('mails.send')}}">
                                 @csrf
                                 <input class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                                        type="submit" value="メール送信">
                             </form>
                         </li>
                         <li>
-                            <form method="get" action="{{route('accounts.mailList')}}">
+                            <form method="get" action="{{route('mails.index')}}">
                                 @csrf
                                 <input class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                                        type="submit" value="メールテンプレート">
@@ -67,21 +67,21 @@
                 <div class="collapse" id="dashboard-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                         <li>
-                            <form method="get" action="{{route('accounts.user')}}">
+                            <form method="get" action="{{route('user.index')}}">
                                 @csrf
                                 <input class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                                        type="submit" value="ユーザー">
                             </form>
                         </li>
                         <li>
-                            <form method="get" action="{{route('accounts.userItem')}}">
+                            <form method="get" action="{{route('userItems.index')}}">
                                 @csrf
                                 <input class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                                        type="submit" value="所持アイテム">
                             </form>
                         </li>
                         <li>
-                            <form method="get" action="{{route('accounts.userMail')}}">
+                            <form method="get" action="{{route('userMail.index')}}">
                                 @csrf
                                 <input class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                                        type="submit" value="メール受信者">
@@ -114,7 +114,7 @@
                             </form>
                         </li>
                         <li>
-                            <form method="post" action="{{route('accounts.logout')}}">
+                            <form method="post" action="{{route('login.logout')}}">
                                 @csrf
                                 <input class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                                        type="submit" value="Sign out">

@@ -15,6 +15,6 @@ class UserController extends Controller
         }
         //$data = User::All();
         $data = User::paginate(10);
-        return view('accounts.user', ['accounts' => $data]);
+        return view('user', ['accounts' => $data]);
     }
 }
