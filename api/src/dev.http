@@ -1,0 +1,27 @@
+###ユーザ情報取得
+GET http://localhost:8000/api/users/1
+Accept: application/json
+
+###ユーザ一覧取得(level)
+GET http://localhost:8000/api/users?min=10&max=20
+Accept: application/json
+
+###メール一覧取得
+GET http://localhost:8000/api/mails
+Accept: application/json
+
+###アイテム一覧取得
+GET http://localhost:8000/api/items
+Accept: application/json
+
+###所持アイテム一覧取得
+GET http://localhost:8000/api/userItems/1
+Accept: application/json
+
+###受信メール一覧取得
+GET http://localhost:8000/api/userMails/2
+Accept: application/json
+
+###フォロー一覧取得
+GET http://localhost:8000/api/follows/1
+Accept: application/json
