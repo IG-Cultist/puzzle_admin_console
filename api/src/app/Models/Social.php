@@ -12,13 +12,4 @@ class Social extends Model
     protected $guarded = [ //更新しないカラムを指定 idなどのauto_incrementのついているもの
         'id'
     ];
-
-    public function follows()
-    {
-        return $this->belongsToMany(
-            Follow::class, 'follows',
-            'user_id',
-            'user_id')
-            ->withPivot('locate');
-    }
 }

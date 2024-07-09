@@ -30,4 +30,19 @@ class User extends Model
             'mail_id')
             ->withPivot('isOpen');
     }
+
+    public function follows()
+    { #フォロー数
+        return $this->hasMany(Follow::class);
+    }
+
+    public function followers()
+    { #フォロワー数
+        return $this->hasMany(Follow::class, 'follow_id');
+    }
+
+    public function social()
+    { #last_login とlocate
+        return $this->hasOne(Social::class);
+    }
 }

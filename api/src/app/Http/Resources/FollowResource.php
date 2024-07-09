@@ -15,8 +15,10 @@ class FollowResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'follow_id' => $this->follow_id,
-            'locate' => $this->pivot->locate,
+            'follow' => $this->follows,
+            'follower' => $this->follower,
+            'locate' => $this->locate,
+            'last_login' => $this->last_login,
             'created_at' => $this->created_at->format('Y/m/d/H:i:s'),
             'updated_at' => $this->updated_at->format('Y/m/d/H:i:s')
         ];

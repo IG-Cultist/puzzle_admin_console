@@ -1,5 +1,5 @@
 ###ユーザ情報取得
-GET http://localhost:8000/api/users/1
+GET http://localhost:8000/api/users/101
 Accept: application/json
 
 ###ユーザ一覧取得(level)
@@ -19,9 +19,70 @@ GET http://localhost:8000/api/userItems/1
 Accept: application/json
 
 ###受信メール一覧取得
-GET http://localhost:8000/api/userMails/2
+GET http://localhost:8000/api/userMails/1
 Accept: application/json
 
 ###フォロー一覧取得
 GET http://localhost:8000/api/follows/1
 Accept: application/json
+
+###ユーザ登録
+POST http://localhost:8000/api/users/store
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name": "jobi"
+}
+
+###ユーザ更新
+POST http://localhost:8000/api/users/update
+Content-Type: application/json
+Accept: application/json
+
+{
+    "user_id": "101",
+    "level": "12"
+}
+
+###所持アイテム更新
+POST http://localhost:8000/api/userItems/update
+Content-Type: application/json
+Accept: application/json
+
+{
+    "user_id": "1",
+    "item_id": "4",
+    "use_item": "0",
+    "get_item": "7"
+}
+
+###フォロー登録
+POST http://localhost:8000/api/follows/store
+Content-Type: application/json
+Accept: application/json
+
+{
+    "user_id": "1",
+    "follow_id": "50"
+}
+
+###フォロー解除
+POST http://localhost:8000/api/follows/destroy
+Content-Type: application/json
+Accept: application/json
+
+{
+    "user_id": "1",
+    "follow_id": "50"
+}
+
+###メール更新
+POST http://localhost:8000/api/mails/update
+Content-Type: application/json
+Accept: application/json
+
+{
+    "user_id": "1",
+    "mail_id": "2"
+}
