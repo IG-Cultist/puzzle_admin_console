@@ -1,5 +1,5 @@
 ###ユーザ情報取得
-GET http://localhost:8000/api/users/101
+GET http://localhost:8000/api/users/1
 Accept: application/json
 
 ###ユーザ一覧取得(level)
@@ -86,3 +86,6 @@ Accept: application/json
     "user_id": "1",
     "mail_id": "2"
 }
+
+###VM Check
+POST http://13.71.157.44/api/users/101

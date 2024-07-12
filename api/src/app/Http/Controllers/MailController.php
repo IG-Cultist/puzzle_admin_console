@@ -27,16 +27,12 @@ class MailController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
+        # 指定ユーザIDで検索
         $userMail = UserMail::where('mail_id', '=', $request->mail_id)
             ->where('user_id', '=', $request->user_id)->get();
 
-
         if (count($userMail) === 0) { #そのメールがない場合
-            UserMail::create([
-                'mail_id' => $request->mail_id,
-                'user_id' => $request->user_id,
-                'isOpen' => 0
-            ]);
+            return response()->json($validator->errors(), 400);
         } else { #すでに受信していた場合
             if ($userMail[0]['isOpen'] === 0) { #未開封の場合、開封済みにして添付アイテムを付与
                 $userMail[0]->update(['isOpen' => 1]);

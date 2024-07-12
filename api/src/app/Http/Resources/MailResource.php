@@ -15,6 +15,7 @@ class MailResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'text' => $this->text,
             'item_id' => $this->item_id,
             'item_sum' => $this->item_sum,

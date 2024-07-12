@@ -21,6 +21,7 @@ class FollowController extends Controller
         $followers = $user->followers->count();
         $social = $user->social;
 
+        $responce['id'] = $user->id;
         $responce['follows'] = $follows;
         $responce['followers'] = $followers;
         $responce['locate'] = $social->locate;

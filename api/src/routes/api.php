@@ -62,8 +62,8 @@ Route::middleware(NoCacheMiddleWare::class)
 
 # フォロー登録
 Route::middleware(NoCacheMiddleWare::class)
-    ->post('follows/update', [FollowController::class, 'store'])
-    ->name('follows/update');
+    ->post('follows/store', [FollowController::class, 'store'])
+    ->name('follows/store');
 
 # フォロー解除
 Route::middleware(NoCacheMiddleWare::class)
