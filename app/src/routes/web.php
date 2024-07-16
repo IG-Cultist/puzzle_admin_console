@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\LogController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\MailController;
@@ -68,6 +69,14 @@ Route::middleware(NoCacheMiddleWare::class)->group(function () {
 
             # 検索処理
             Route::post('{id}/show', 'show')->name('show');
+        });
+
+    # ログコントローラーの処理をグループ化
+    Route::prefix('logs')->name('logs.')->controller(LogController::class)
+        ->middleware(AuthMiddleware::class)->group(function () {
+            Route::get('itemLog', 'showItemLog')->name('itemLog');      #アイテムログ画面
+            Route::get('mailLog', 'showMailLog')->name('mailLog');      #メールログ画面
+            Route::get('followLog', 'showFollowLog')->name('followLog');#フォローログ画面
         });
 
     # ログイン画面

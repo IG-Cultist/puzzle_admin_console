@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('title','ユーザ一覧')
-@section('user','active')
+@section('user','true')
+@section('master','false')
+@section('account','false')
+@section('logs','false')
 @section('body')
     <div class="container">
         <div class="row">

@@ -23,7 +23,7 @@
         <ul class="list-unstyled ps-0">
             <li class="mb-1">
                 <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                        data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                        data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="@yield('master')">
                     MasterData
                 </button>
                 <div class="collapse show" id="home-collapse">
@@ -61,7 +61,7 @@
             </li>
             <li class="mb-1">
                 <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                        data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+                        data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="@yield('user')">
                     UserData
                 </button>
                 <div class="collapse" id="dashboard-collapse">
@@ -105,10 +105,9 @@
                 </div>
             </li>
 
-            <li class="border-top my-3"></li>
             <li class="mb-1">
                 <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                        data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                        data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="@yield('account')">
                     Account
                 </button>
                 <div class="collapse" id="account-collapse">
@@ -125,6 +124,38 @@
                                 @csrf
                                 <input class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                                        type="submit" value="Sign out">
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="mb-1">
+                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                        data-bs-toggle="collapse" data-bs-target="#log-collapse" aria-expanded="@yield('log')">
+                    Log
+                </button>
+                <div class="collapse" id="log-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        <li>
+                            <form method="get" action="{{route('logs.itemLog')}}">
+                                @csrf
+                                <input class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                       type="submit" value="ItemLog">
+                            </form>
+                        </li>
+                        <li>
+                            <form method="get" action="{{route('logs.mailLog')}}">
+                                @csrf
+                                <input class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                       type="submit" value="MailLog">
+                            </form>
+                        </li>
+                        <li>
+                            <form method="get" action="{{route('logs.followLog')}}">
+                                @csrf
+                                <input class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                       type="submit" value="FollowLog">
                             </form>
                         </li>
                     </ul>

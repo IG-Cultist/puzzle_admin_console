@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\UserItemResource;
+use App\Models\itemLog;
 use App\Models\UserItem;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -51,9 +52,20 @@ class UserItemController extends Controller
                         if ($userItem[0]['item_num'] < 0) { #0を下回った場合0にする
                             $userItem[0]['item_num'] = 0;
                         }
+
+                        ItemLog::create([
+                            'user_id' => $request->user_id,
+                            'item_id' => $request->item_id,
+                            'item_fluctuation' => -$request->use_item
+                        ]);
                     }
                     if (isset($request->get_item)) { #アイテムが追加された場合
                         $userItem[0]['item_num'] += $request->get_item;
+                        ItemLog::create([
+                            'user_id' => $request->user_id,
+                            'item_id' => $request->item_id,
+                            'item_fluctuation' => $request->get_item
+                        ]);
                     }
                     $userItem[0]->save();
                 } else { #新しく入手した場合
@@ -61,6 +73,12 @@ class UserItemController extends Controller
                         'user_id' => $request->user_id,
                         'item_id' => $request->item_id,
                         'item_num' => $request->get_item
+                    ]);
+
+                    ItemLog::create([
+                        'user_id' => $request->user_id,
+                        'item_id' => $request->item_id,
+                        'item_fluctuation' => $request->get_item
                     ]);
                 }
             });

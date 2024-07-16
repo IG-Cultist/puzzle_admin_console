@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\FollowResource;
-use App\Http\Resources\UserResource;
 use App\Models\Follow;
+use App\Models\followLog;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -56,6 +56,11 @@ class FollowController extends Controller
                         'user_id' => $request->user_id,
                         'follow_id' => $request->follow_id,
                     ]);
+                    FollowLog::create([
+                        'user_id' => $request->user_id,
+                        'target_user_id' => $request->follow_id,
+                        'action' => true
+                    ]);
                 } else { #すでにフォローしていた場合
                     return response()->json($validator->errors(), 400);
                 }
@@ -84,6 +89,12 @@ class FollowController extends Controller
 
                 if (count($follow) !== 0) { #フォローしていた場合
                     $follow[0]->delete(); #指定カラムを削除
+                    FollowLog::create([
+                        'user_id' => $request->user_id,
+                        'target_user_id' => $request->follow_id,
+                        'action' => false
+                    ]);
+
                 } else { #フォローしていなかった場合
                     return response()->json($validator->errors(), 400);
                 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\MailResource;
 use App\Models\Mail;
+use App\Models\mailLog;
 use App\Models\UserItem;
 use App\Models\UserMail;
 use Illuminate\Http\Request;
@@ -43,7 +44,6 @@ class MailController extends Controller
                         $userMail[0]->update(['isOpen' => 1]);
 
                         $mail = Mail::where('id', '=', $request->mail_id)->get();
-
                         $userItem = UserItem::where('user_id', '=', $request->user_id)
                             ->where('item_id', '=', $mail[0]['item_id'])->get();
 
@@ -57,6 +57,12 @@ class MailController extends Controller
                         } else { #すでに同じアイテムを持ってい居た場合、加算
                             $userItem[0]['item_num'] += $mail[0]['item_sum'];
                         }
+
+                        MailLog::create([
+                            'user_id' => $request->user_id,
+                            'mail_id' => $request->mail_id,
+                            'action' => true
+                        ]);
                     }
                 }
             });

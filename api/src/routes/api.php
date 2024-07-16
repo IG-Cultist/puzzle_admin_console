@@ -7,7 +7,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserItemController;
 use App\Http\Controllers\UserMailController;
 use App\Http\Middleware\NoCacheMiddleWare;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 # ユーザ検索
@@ -69,6 +68,7 @@ Route::middleware(NoCacheMiddleWare::class)
 Route::middleware(NoCacheMiddleWare::class)
     ->post('follows/destroy', [FollowController::class, 'destroy'])
     ->name('follows/destroy');
+
 # メール更新
 Route::middleware(NoCacheMiddleWare::class)
     ->post('mails/update', [MailController::class, 'update'])
