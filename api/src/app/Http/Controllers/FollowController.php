@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\FollowResource;
+use App\Http\Resources\UserResource;
 use App\Models\Follow;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,13 +21,15 @@ class FollowController extends Controller
     public function show(Request $request)
     {
         $user = User::findOrFail($request->user_id);
-        $follows = $user->follows->count();
-        $followers = $user->followers->count();
+        $follows = $user->follows;
+        $followers = $user->followers;
         $social = $user->social;
 
         $responce['id'] = $user->id;
-        $responce['follows'] = $follows;
-        $responce['followers'] = $followers;
+        $responce['follows'] = $follows->count();
+        $responce['follow_list'] = FollowResource::collection($follows);
+        $responce['followers'] = $followers->count();
+        $responce['follower_list'] = FollowResource::collection($followers);
         $responce['locate'] = $social->locate;
         $responce['last_login'] = $social->last_login;
         return response()->json($responce);
