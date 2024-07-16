@@ -19,7 +19,7 @@ GET http://localhost:8000/api/userItems/1
 Accept: application/json
 
 ###受信メール一覧取得
-GET http://localhost:8000/api/userMails/1
+GET http://localhost:8000/api/userMails/2
 Accept: application/json
 
 ###フォロー一覧取得
@@ -84,7 +84,7 @@ Accept: application/json
 
 {
     "user_id": "1",
-    "mail_id": "2"
+    "mail_id": "5"
 }
 
 ###VM Check

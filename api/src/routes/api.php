@@ -35,9 +35,9 @@ Route::middleware(NoCacheMiddleWare::class)
     ->get('userItems/{user_id}', [UserItemController::class, 'show'])
     ->name('userItems/show');
 
-# メール検索
+# 受信メール検索
 Route::middleware(NoCacheMiddleWare::class)
-    ->get('userMails/{user_id}', [UserMailController::class, 'show'])
+    ->get('userMails/{mail_id}', [UserMailController::class, 'show'])
     ->name('userMails/show');
 
 # フォローリスト検索

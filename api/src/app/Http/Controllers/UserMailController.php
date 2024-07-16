@@ -15,7 +15,7 @@ class UserMailController extends Controller
 
     public function show(Request $request)
     {
-        $user = User::findOrFail($request->user_id);
+        $user = User::findOrFail($request->mail_id);
         $mails = $user->mails;
         $responce['mails']
             = UserMailResource::collection($mails);
