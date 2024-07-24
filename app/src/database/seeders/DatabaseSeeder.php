@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\Follow;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,5 +21,13 @@ class DatabaseSeeder extends Seeder
         $this->call(SocialTableSeeder::class);
         $this->call(UserMailsTableSeeder::class);
         $this->call(FollowsTableSeeder::class);
+        $this->call(AchievementsTableSeeder::class);
+        $this->call(UsreAchievementsTableSeeder::class);
+        $this->call(ResultsTableSeeder::class);
+        $this->call(BattleModesTableSeeder::class);
+        $this->call(DropStagesTableSeeder::class);
+        $this->call(UsableCardsTableSeeder::class);
+        $this->call(UsableStagesTableSeeder::class);
+        $this->call(StagesTableSeeder::class);
     }
 }
