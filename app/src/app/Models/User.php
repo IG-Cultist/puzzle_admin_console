@@ -21,4 +21,9 @@ class User extends Model
             'item_id')
             ->withPivot('item_num');
     }
+
+    public function battles()
+    {
+        return $this->hasOne(BattleMode::class);
+    }
 }

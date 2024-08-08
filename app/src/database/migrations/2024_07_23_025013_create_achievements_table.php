@@ -12,6 +12,7 @@ return new class extends Migration {
             $table->string('name');       #実績名
             $table->string('conditions'); #解放条件
             $table->string('rarelity');  #レアリティ
+            $table->integer('request_progress');  #要求進行値
             $table->timestamps();
 
             $table->unique('name');

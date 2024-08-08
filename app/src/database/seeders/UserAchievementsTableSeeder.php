@@ -5,32 +5,32 @@ namespace Database\Seeders;
 use App\Models\UserAchievement;
 use Illuminate\Database\Seeder;
 
-class UsreAchievementsTableSeeder extends Seeder
+class UserAchievementsTableSeeder extends Seeder
 {
     public function run(): void
     {
         UserAchievement::create([
             "user_id" => 1,
             "achievement_id" => 2,
-            "get_at" => '2024/06/11',
+            "progress" => 1
         ]);
 
         UserAchievement::create([
             "user_id" => 4,
             "achievement_id" => 3,
-            "get_at" => '2024/12/08',
+            "progress" => 24,
         ]);
 
         UserAchievement::create([
             "user_id" => 31,
             "achievement_id" => 1,
-            "get_at" => '2022/05/15',
+            "progress" => 1,
         ]);
 
         UserAchievement::create([
             "user_id" => 63,
             "achievement_id" => 1,
-            "get_at" => '2024/08/21',
+            "progress" => 50,
         ]);
     }
 }

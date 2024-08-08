@@ -10,19 +10,39 @@ Accept: application/json
 GET http://localhost:8000/api/mails
 Accept: application/json
 
+###ステージ一覧取得
+GET http://localhost:8000/api/stages
+Accept: application/json
+
 ###アイテム一覧取得
 GET http://localhost:8000/api/items
 Accept: application/json
 
-###所持アイテム一覧取得
+###実績一覧取得
+GET http://localhost:8000/api/Achievements
+Accept: application/json
+
+###バトルモード検索結果取得
+GET http://localhost:8000/api/battleMode/1
+Accept: application/json
+
+###デッキ検索結果取得
+GET http://localhost:8000/api/battleMode/deck/5
+Accept: application/json
+
+###所持アイテム検索結果取得
 GET http://localhost:8000/api/userItems/1
 Accept: application/json
 
-###受信メール一覧取得
+###受信メール検索結果取得
 GET http://localhost:8000/api/userMails/2
 Accept: application/json
 
-###フォロー一覧取得
+###所持実績検索結果取得
+GET http://localhost:8000/api/userAchievements/1
+Accept: application/json
+
+###フォロー検索結果取得
 GET http://localhost:8000/api/follows/1
 Accept: application/json
 
@@ -87,6 +107,46 @@ Accept: application/json
     "mail_id": "4"
 }
 
+###ステージ更新
+POST http://localhost:8000/api/stages/update
+Content-Type: application/json
+Accept: application/json
+
+{
+    "id": "3"
+}
+
+###所持実績更新
+POST http://localhost:8000/api/userAchievement/update
+Content-Type: application/json
+Accept: application/json
+
+{
+    "user_id": "5",
+    "achievement_id": "3",
+    "progress": "14"
+}
+
+###デッキ更新
+POST http://localhost:8000/api/battleMode/deck/update
+Content-Type: application/json
+Accept: application/json
+
+{
+    "user_id": "5",
+    "card_id": "3"
+}
+
+###デッキ消去
+POST http://localhost:8000/api/battleMode/deck/destroy
+Content-Type: application/json
+Accept: application/json
+
+{
+    "user_id": "5",
+    "card_id": "3"
+}
+
 ###VM Check
-GET http://13.73.4.44/api/users/1
+GET http://13.73.4.44/test.txt
 Accept: application/json

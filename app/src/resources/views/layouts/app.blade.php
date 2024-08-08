@@ -56,6 +56,13 @@
                                        type="submit" value="メールテンプレート">
                             </form>
                         </li>
+                        <li>
+                            <form method="get" action="{{route('battles.usableCard')}}">
+                                @csrf
+                                <input class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                       type="submit" value="使用可能カード">
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </li>
@@ -99,6 +106,27 @@
                                 @csrf
                                 <input class="link-body-emphasis d-inline-flex text-decoration-none rounded"
                                        type="submit" value="フォローリスト">
+                            </form>
+                        </li>
+                        <li>
+                            <form method="get" action="{{route('battles.index')}}">
+                                @csrf
+                                <input class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                       type="submit" value="バトルモード">
+                            </form>
+                        </li>
+                        <li>
+                            <form method="get" action="{{route('battles.deck')}}">
+                                @csrf
+                                <input class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                       type="submit" value="デッキ情報">
+                            </form>
+                        </li>
+                        <li>
+                            <form method="get" action="{{route('battles.result')}}">
+                                @csrf
+                                <input class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                       type="submit" value="戦歴情報">
                             </form>
                         </li>
                     </ul>

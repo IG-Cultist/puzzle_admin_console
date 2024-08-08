@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\BattleController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ItemController;
@@ -77,6 +78,26 @@ Route::middleware(NoCacheMiddleWare::class)->group(function () {
             Route::get('itemLog', 'showItemLog')->name('itemLog');      #アイテムログ画面
             Route::get('mailLog', 'showMailLog')->name('mailLog');      #メールログ画面
             Route::get('followLog', 'showFollowLog')->name('followLog');#フォローログ画面
+        });
+
+    # バトルコントローラの処理をグループ化
+    Route::prefix('battles')->name('battles.')->controller(BattleController::class)
+        ->middleware(AuthMiddleware::class)->group(function () {
+            # 一覧画面
+            Route::get('index', 'index')->name('index');
+            # デッキ一覧画面
+            Route::get('deck', 'deck')->name('deck');
+            # リザルト一覧画面
+            Route::get('result', 'result')->name('result');
+            # 使用可能カード一覧画面
+            Route::get('usableCard', 'usableCard')->name('usableCard');
+
+            # 検索処理
+            Route::post('{id}/show', 'show')->name('show');
+            # デッキ検索処理
+            Route::post('{id}/showDeck', 'showDeck')->name('showDeck');
+            # リザルト検索処理
+            Route::post('{id}/showResult', 'showResult')->name('showResult');
         });
 
     # ログイン画面

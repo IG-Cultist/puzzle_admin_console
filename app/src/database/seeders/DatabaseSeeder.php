@@ -22,12 +22,13 @@ class DatabaseSeeder extends Seeder
         $this->call(UserMailsTableSeeder::class);
         $this->call(FollowsTableSeeder::class);
         $this->call(AchievementsTableSeeder::class);
-        $this->call(UsreAchievementsTableSeeder::class);
+        $this->call(UserAchievementsTableSeeder::class);
         $this->call(ResultsTableSeeder::class);
         $this->call(BattleModesTableSeeder::class);
         $this->call(DropStagesTableSeeder::class);
         $this->call(UsableCardsTableSeeder::class);
         $this->call(UsableStagesTableSeeder::class);
         $this->call(StagesTableSeeder::class);
+        $this->call(DecksTableSeeder::class);
     }
 }

@@ -11,7 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->integer('user_id');         #ユーザID
             $table->integer('achievement_id');  #実績ID
-            $table->text('get_at');       #入手日時
+            $table->integer('progress');        #進行度
             $table->timestamps();
 
             $table->unique(['user_id', 'achievement_id']);

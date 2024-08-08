@@ -17,7 +17,7 @@ class UserMailController extends Controller
         }
         // 必要なカラムを取得
         $data = UserMail::select('user_mails.id', 'users.name as user_name', 'mails.text as mail_txt',
-            'items.name as item_name', 'mails.item_sum', 'user_mails.isOpen')
+            'items.name as item_name', 'mails.item_num', 'user_mails.isOpen')
             ->join('users', 'user_mails.user_id', '=', 'users.id')
             ->join('mails', 'user_mails.mail_id', '=', 'mails.id')
             ->join('items', 'mails.item_id', '=', 'items.id')

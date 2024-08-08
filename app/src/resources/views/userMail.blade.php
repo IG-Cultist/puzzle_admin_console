@@ -19,7 +19,7 @@
                 <td>{{$account['user_name']}}</td>
                 <td>{{$account['mail_txt']}}</td>
                 <td>{{$account['item_name']}}</td>
-                <td>{{$account['item_sum']}}</td>
+                <td>{{$account['item_num']}}</td>
                 <td>
                     @if($account['isOpen'] === 0)
                         ☓
