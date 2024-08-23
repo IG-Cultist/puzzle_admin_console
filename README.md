@@ -13,4 +13,4 @@ APIを用いたカードパズルゲーム
 
 # システム構成図
 
-![システム構成図]()
+![システム構成図](https://github.com/IG-Cultist/puzzle_admin_console/blob/main/images/System.png)
