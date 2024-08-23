@@ -18,6 +18,18 @@ Accept: application/json
 GET http://localhost:8000/api/items
 Accept: application/json
 
+###ドロップステージ一覧取得
+GET http://localhost:8000/api/drops
+Accept: application/json
+
+###使用可能ステージ一覧取得
+GET http://localhost:8000/api/usables
+Accept: application/json
+
+###使用可能カード一覧取得
+GET http://localhost:8000/api/battleMode/usableCards
+Accept: application/json
+
 ###実績一覧取得
 GET http://localhost:8000/api/Achievements
 Accept: application/json
@@ -28,6 +40,10 @@ Accept: application/json
 
 ###デッキ検索結果取得
 GET http://localhost:8000/api/battleMode/deck/5
+Accept: application/json
+
+###バトルモード検索結果取得
+GET http://localhost:8000/api/battleMode/result/1
 Accept: application/json
 
 ###所持アイテム検索結果取得
@@ -147,6 +163,16 @@ Accept: application/json
     "card_id": "3"
 }
 
+###リザルト更新
+POST http://localhost:8000/api/battleMode/result/update
+Content-Type: application/json
+Accept: application/json
+
+{
+    "winner_id": "15",
+    "loser_id": "8"
+}
+
 ###VM Check
-GET http://13.73.4.44/test.txt
+GET http://74.226.238.71/test.txt
 Accept: application/json
