@@ -1,7 +1,7 @@
 # DeadlyDraw(デッドリードロー)
 APIを用いたカードパズルゲーム
 
-![ゲームのスクリーンショット]()
+![ゲームのスクリーンショット](https://github.com/IG-Cultist/puzzle_admin_console/blob/main/images/Sample.png)
 
 # URL
 
