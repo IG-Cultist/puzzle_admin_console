@@ -40,6 +40,10 @@ class StageController extends Controller
                 } else { //クリアしていた場合、エラーを返す
                     return response()->json($validator->errors(), 400);
                 }
+                if ($stage[0]['isPerfect'] === 0) {
+                    $stage[0]->update(['isPerfect' => 1]);
+                }
+
             });
             return response()->json();
         } catch (Exception $e) {
