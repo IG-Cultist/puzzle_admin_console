@@ -9,10 +9,11 @@ return new class extends Migration {
     {
         Schema::create('stages', function (Blueprint $table) {
             $table->id();
-            $table->boolean('isClear');
+            $table->integer('isClear');
+            $table->integer('isPerfect');
             $table->timestamps();
 
-            $table->index('isClear');
+            $table->index(['isClear', 'isPerfect']);
         });
     }
 

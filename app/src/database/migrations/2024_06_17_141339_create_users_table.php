@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 20);  //ユーザ名
+            $table->string('name', 255);  //ユーザ名
             $table->integer('level');   //レベル
             $table->integer('exp');   //経験値
             $table->integer('life');   //ライフ

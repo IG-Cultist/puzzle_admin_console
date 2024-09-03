@@ -183,9 +183,17 @@ Content-Type: application/json
 Accept: application/json
 
 {
-    "name": "igc"
+    "name": "ef1aac2d-c2ad-44d4-b74f-1f68aae7c42b"
 }
 
 ###VM Check3
-GET http://13.73.4.44/api/users
+GET http://13.73.4.44/api/users/101
+Accept: application/json
+
+###VM Check4
+GET https://api-deadlydraw.japaneast.cloudapp.azure.com/api/users/101
+Accept: application/json
+
+###VM Check5
+GET https://api-deadlydraw.japaneast.cloudapp.azure.com/api/stages
 Accept: application/json
