@@ -15,27 +15,52 @@ class ItemsTableSeeder extends Seeder
     public function run(): void
     {
         Item::create([
-            'name' => 'ほしにく',
-            'effect' => 20,
-            'explain' => '使うとなくなる。丁寧に干された肉。小回復',
+            'name' => 'Spike',
+            'effect' => 1,
+            'bestItem_name' => 'Shield',
+            'explain' => '攻撃力+1',
         ]);
 
         Item::create([
-            'name' => '回復ポーション',
-            'effect' => 100,
-            'explain' => '使うとなくなる。赤く輝く回復薬。大回復',
+            'name' => 'ArmorChip',
+            'effect' => 1,
+            'bestItem_name' => '',
+            'explain' => '付与シールド+1',
         ]);
 
         Item::create([
-            'name' => 'チタニウムバックル',
-            'effect' => 15,
-            'explain' => 'ダメージを受ける毎、固定ダメージ軽減',
+            'name' => 'Slime',
+            'effect' => 1,
+            'bestItem_name' => '',
+            'explain' => '攻撃時、敵の攻撃力-1',
         ]);
 
         Item::create([
-            'name' => 'モルテンナックル',
-            'effect' => 70,
-            'explain' => 'ダメージを与える毎、必ず値が70に固定される',
+            'name' => 'Hone',
+            'effect' => 0,
+            'bestItem_name' => 'Sword',
+            'explain' => '(Swordのみ影響)盾を無視して攻撃できる',
+        ]);
+
+        Item::create([
+            'name' => 'CleanStone',
+            'effect' => 0,
+            'bestItem_name' => '',
+            'explain' => '効果なし。無駄にきれい',
+        ]);
+
+        Item::create([
+            'name' => 'WonderfulReplica',
+            'effect' => 0,
+            'bestItem_name' => '',
+            'explain' => '効果なし。無駄に出来がいい',
+        ]);
+
+        Item::create([
+            'name' => 'HandGun',
+            'effect' => 0,
+            'bestItem_name' => '',
+            'explain' => '効果なし。弾切れだ',
         ]);
     }
 }
