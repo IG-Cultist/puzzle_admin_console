@@ -10,13 +10,13 @@ class StagesTableSeeder extends Seeder
     public function run(): void
     {
         Stage::create([
-            'isClear' => 1,
+            'isClear' => 0,
             'isPerfect' => 0,
         ]);
 
         Stage::create([
-            'isClear' => 1,
-            'isPerfect' => 1,
+            'isClear' => 0,
+            'isPerfect' => 0,
         ]);
 
         Stage::create([
@@ -29,5 +29,33 @@ class StagesTableSeeder extends Seeder
             'isPerfect' => 0,
         ]);
 
+        Stage::create([
+            'isClear' => 0,
+            'isPerfect' => 0,
+        ]);
+        Stage::create([
+            'isClear' => 0,
+            'isPerfect' => 0,
+        ]);
+
+        Stage::create([
+            'isClear' => 0,
+            'isPerfect' => 0,
+        ]);
+
+        Stage::create([
+            'isClear' => 0,
+            'isPerfect' => 0,
+        ]);
+
+        Stage::create([
+            'isClear' => 0,
+            'isPerfect' => 0,
+        ]);
+
+        Stage::create([
+            'isClear' => 0,
+            'isPerfect' => 0,
+        ]);
     }
 }
