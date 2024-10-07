@@ -187,3 +187,7 @@ Accept: application/json
 ###VM ShowBattleMode
 GET https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode
 Accept: application/json
+
+###VM Show UsableCard
+GET https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode/usableCards
+Accept: application/json
