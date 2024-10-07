@@ -62,5 +62,26 @@ class ItemsTableSeeder extends Seeder
             'bestItem_name' => '',
             'explain' => '効果なし。弾切れだ',
         ]);
+
+        Item::create([
+            'name' => 'JOKER',
+            'effect' => 0,
+            'bestItem_name' => '',
+            'explain' => '効果なし。不吉だ',
+        ]);
+
+        Item::create([
+            'name' => 'HandyDrill',
+            'effect' => 0,
+            'bestItem_name' => '',
+            'explain' => '攻撃時、ブロックを破壊',
+        ]);
+
+        Item::create([
+            'name' => 'VampireWrench',
+            'effect' => 0,
+            'bestItem_name' => '',
+            'explain' => '吸血鬼お墨付きのレンチ！！！\n攻撃時、HP回復+1',
+        ]);
     }
 }

@@ -10,27 +10,48 @@ class UsableCardsTableSeeder extends Seeder
     public function run(): void
     {
         UsableCard::create([
-            'name' => "剣",
-            'effect' => 1,
-            'explain' => "基本の武器",
+            'name' => "Sword",
+            'stack' => 4,
         ]);
 
         UsableCard::create([
-            'name' => "盾",
-            'effect' => 1,
-            'explain' => "基本の盾",
+            'name' => "Shield",
+            'stack' => 4,
         ]);
 
         UsableCard::create([
-            'name' => "バトルアックス",
-            'effect' => 1,
-            'explain' => "ブロックを無視できるパワフルな武器",
+            'name' => "A.X.E",
+            'stack' => 2,
         ]);
 
         UsableCard::create([
-            'name' => "スパイクシールド",
-            'effect' => 1,
-            'explain' => "とげとげしいワイルドな盾",
+            'name' => "S.Y.T.H",
+            'stack' => 2,
+        ]);
+
+        UsableCard::create([
+            'name' => "Injector",
+            'stack' => 1,
+        ]);
+
+        UsableCard::create([
+            'name' => "SwatShield",
+            'stack' => 2,
+        ]);
+
+        UsableCard::create([
+            'name' => "ForgeHammer",
+            'stack' => 1,
+        ]);
+
+        UsableCard::create([
+            'name' => "M.A.C.E",
+            'stack' => 2,
+        ]);
+
+        UsableCard::create([
+            'name' => "PoisonKnife",
+            'stack' => 2,
         ]);
     }
 }

@@ -17,6 +17,13 @@ use Mockery\Exception;
 
 class BattleModeController extends Controller
 {
+    #バトルモード登録者一覧
+    public function index(Request $request)
+    {
+        $user = BattleMode::All();
+        return response()->json(BattleModeResource::collection($user));   #collectionで複数所得
+    }
+
     public function usableCard()
     {
         $user = UsableCard::All();
@@ -26,7 +33,7 @@ class BattleModeController extends Controller
     # ユーザID指定検索処理
     public function show(Request $request)
     {
-        $user = BattleMode::where('user_id', '=', $request->user_id)->get();
+        $user = BattleMode::where('user_id', '=', $request->user()->id)->get();
         return response()->json(BattleModeResource::collection($user));   #collectionで複数所得
     }
 
@@ -49,9 +56,8 @@ class BattleModeController extends Controller
     {
         try {
             //トランザクション処理
-            DB::transaction(function () use ($request) {
+            $response = DB::transaction(function () use ($request) {
                 $validator = Validator::make($request->all(), [
-                    'winner_id' => ['required', 'int'],
                     'loser_id' => ['required', 'int'],
                 ]);
                 if ($validator->fails()) {
@@ -59,7 +65,7 @@ class BattleModeController extends Controller
                 }
 
                 # リクエストされたユーザID指定で取得
-                $result = Result::where('winner_id', '=', $request->winner_id)
+                $result = Result::where('winner_id', '=', $request->user()->id)
                     ->where('loser_id', '=', $request->loser_id)->get();
 
                 if (count($result) !== 0) { #すでに記録している場合、処理をしない
@@ -67,11 +73,14 @@ class BattleModeController extends Controller
                 } else { #新しく設定した場合
                     # DBに追加
                     Result::create([
-                        'winner_id' => $request->winner_id,
+                        'winner_id' => $request->user()->id,
                         'loser_id' => $request->loser_id
                     ]);
                 }
             });
+            if (isset($response)) {
+                return $response;
+            }
             return response()->json();
         } catch (Exception $e) {
             return response()->json($e, 500);
@@ -83,9 +92,8 @@ class BattleModeController extends Controller
     {
         try {
             //トランザクション処理
-            DB::transaction(function () use ($request) {
+            $response = DB::transaction(function () use ($request) {
                 $validator = Validator::make($request->all(), [
-                    'user_id' => ['required', 'int'],
                     'card_id' => ['required', 'int'],
                 ]);
                 if ($validator->fails()) {
@@ -93,19 +101,17 @@ class BattleModeController extends Controller
                 }
 
                 # リクエストされたユーザID指定で取得
-                $deck = Deck::where('user_id', '=', $request->user_id)
+                $deck = Deck::where('user_id', '=', $request->user()->id)
                     ->where('card_id', '=', $request->card_id)->get();
-
-                if (count($deck) !== 0) { #すでに設定している場合、処理をしない
-                    return response()->json($validator->errors(), 400);
-                } else { #新しく設定した場合
-                    # DBに追加
-                    Deck::create([
-                        'user_id' => $request->user_id,
-                        'card_id' => $request->card_id
-                    ]);
-                }
+                # DBに追加
+                Deck::create([
+                    'user_id' => $request->user()->id,
+                    'card_id' => $request->card_id
+                ]);
             });
+            if (isset($response)) {
+                return $response;
+            }
             return response()->json();
         } catch (Exception $e) {
             return response()->json($e, 500);
@@ -117,9 +123,8 @@ class BattleModeController extends Controller
     {
         try {
             //トランザクション処理
-            DB::transaction(function () use ($request) {
+            $response = DB::transaction(function () use ($request) {
                 $validator = Validator::make($request->all(), [
-                    'user_id' => ['required', 'int'],
                     'card_id' => ['required', 'int'],
                 ]);
                 if ($validator->fails()) {
@@ -127,7 +132,7 @@ class BattleModeController extends Controller
                 }
 
                 # リクエストされたユーザID指定で取得
-                $deck = Deck::where('user_id', '=', $request->user_id)
+                $deck = Deck::where('user_id', '=', $request->user()->id)
                     ->where('card_id', '=', $request->card_id)->get();
 
                 if (count($deck) !== 0) { #指定情報があった場合
@@ -136,6 +141,9 @@ class BattleModeController extends Controller
                     return response()->json($validator->errors(), 400);
                 }
             });
+            if (isset($response)) {
+                return $response;
+            }
             return response()->json();
         } catch (Exception $e) {
             return response()->json($e, 500);

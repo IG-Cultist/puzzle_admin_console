@@ -10,8 +10,7 @@ return new class extends Migration {
         Schema::create('usable_cards', function (Blueprint $table) {
             $table->id();
             $table->string('name');     #名称
-            $table->integer('effect');  #効果値
-            $table->string('explain');  #説明
+            $table->integer('stack');   #枚数
             $table->timestamps();
 
             $table->unique('name');

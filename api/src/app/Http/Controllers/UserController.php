@@ -11,16 +11,7 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'min' => ['required', 'int'],
-            'max' => ['required', 'int'],
-        ]);
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
-        }
-
-        $user = User::where('level', '>=', $request->min)
-            ->where('level', '<=', $request->max)->get();
+        $user = User::All();
         return response()->json(UserResource::collection($user));   #collectionで複数所得
     }
 
@@ -40,12 +31,10 @@ class UserController extends Controller
         }
         $user = User::create([
             'name' => $request->name,
-            'level' => 1,
-            'exp' => 0,
-            'life' => 10
         ]);
+        $token = $user->createToken($request->name)->plainTextToken;
 
-        return response()->json(['user_id' => $user->id]);
+        return response()->json(['user_id' => $user->id, 'token' => $token]);
     }
 
     public function update(Request $request)
@@ -53,29 +42,17 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'user_id' => ['required', 'int'],
             'name' => ['string'],
-            'level' => ['int'],
-            'exp' => ['int'],
-            'life' => ['int'],
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
 
-        $user = User::findOrFail($request->user_id);
+        $user = User::findOrFail($request->user()->id);
         if (isset($request->name)) { #nameがリクエストにあった場合
             $user['name'] = $request->name;
         }
-        if (isset($request->level)) { #levelがリクエストにあった場合
-            $user['level'] = $request->level;
-        }
-        if (isset($request->exp)) { #expがリクエストにあった場合
-            $user['exp'] = $request->exp;
-        }
-        if (isset($request->life)) { #lifeがリクエストにあった場合
-            $user['life'] = $request->life;
-        }
-        $user->save();
 
+        $user->save();
         return response()->json();
     }
 }
