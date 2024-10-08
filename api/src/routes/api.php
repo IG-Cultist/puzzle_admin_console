@@ -41,10 +41,10 @@ Route::prefix('users')->name('users.')->controller(UserController::class)
 # バトルモードAPIグループ
 Route::prefix('battleMode')->name('battleMode.')->controller(BattleModeController::class)
     ->middleware(NoCacheMiddleWare::class)->group(function () {
-        # デッキ検索
-        Route::get('deck/{user_id}', 'deck_show')->name('deck/show');
         # 使用可能カード一覧
         Route::get('usableCard', 'usableCard')->name('usableCard');
+        # デッキ検索
+        Route::get('deck/{user_id}', 'deck_show')->name('deck/show');
         # バトルモードプロフィール一覧
         Route::get('', 'index')->name('index');
         # バトルモードプロフィール検索

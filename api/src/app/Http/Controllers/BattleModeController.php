@@ -40,14 +40,14 @@ class BattleModeController extends Controller
     #デッキ情報の検索処理
     public function deck_show(Request $request)
     {
-        $deck = Deck::where('user_id', '=', $request->user_id)->get();
+        $deck = Deck::where('user_id', '=', $request->user()->id)->get();
         return response()->json(DeckResource::collection($deck));   #collectionで複数所得
     }
 
     #戦闘結果の検索処理
     public function result_show(Request $request)
     {
-        $deck = Result::where('winner_id', '=', $request->user_id)->get();
+        $deck = Result::where('winner_id', '=', $request->user()->id)->get();
         return response()->json(ResultResource::collection($deck));   #collectionで複数所得
     }
 
