@@ -10,6 +10,7 @@ return new class extends Migration {
         Schema::create('usable_cards', function (Blueprint $table) {
             $table->id();
             $table->string('name');     #名称
+            $table->string('type');     #種別
             $table->integer('stack');   #枚数
             $table->timestamps();
 
