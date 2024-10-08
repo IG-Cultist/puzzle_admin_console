@@ -27,7 +27,7 @@ GET http://localhost:8000/api/usables
 Accept: application/json
 
 ###使用可能カード一覧取得
-GET http://localhost:8000/api/battleMode/usableCards
+GET http://localhost:8000/api/battleMode/usableCard
 Accept: application/json
 
 ###実績一覧取得
@@ -189,5 +189,5 @@ GET https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode
 Accept: application/json
 
 ###VM Show UsableCard
-GET https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode/usableCards
+GET https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode/usableCard
 Accept: application/json

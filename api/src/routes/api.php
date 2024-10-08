@@ -43,12 +43,12 @@ Route::prefix('battleMode')->name('battleMode.')->controller(BattleModeControlle
     ->middleware(NoCacheMiddleWare::class)->group(function () {
         # デッキ検索
         Route::get('deck/{user_id}', 'deck_show')->name('deck/show');
+        # 使用可能カード一覧
+        Route::get('usableCard', 'usableCard')->name('usableCard');
         # バトルモードプロフィール一覧
         Route::get('', 'index')->name('index');
         # バトルモードプロフィール検索
-        Route::get('{user_id}', 'show')->name('show');
-        # 使用可能カード一覧
-        Route::get('usableCard', 'usableCard')->name('usableCard');
+        Route::get('show/{user_id}', 'show')->name('show');
         # リザルト検索
         Route::get('result/{user_id}', 'result_show')->name('result/show');
     });
