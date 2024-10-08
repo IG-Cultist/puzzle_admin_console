@@ -36,6 +36,34 @@ class ItemsTableSeeder extends Seeder
         ]);
 
         Item::create([
+            'name' => 'JOKER',
+            'effect' => 0,
+            'bestItem_name' => '',
+            'explain' => '効果なし。不吉だ',
+        ]);
+
+        Item::create([
+            'name' => 'HandyDrill',
+            'effect' => 0,
+            'bestItem_name' => '',
+            'explain' => '攻撃時、ブロックを破壊',
+        ]);
+
+        Item::create([
+            'name' => 'VampireWrench',
+            'effect' => 0,
+            'bestItem_name' => '',
+            'explain' => '吸血鬼お墨付きのレンチ！！！攻撃時、HP回復+1',
+        ]);
+
+        Item::create([
+            'name' => 'HandGun',
+            'effect' => 0,
+            'bestItem_name' => '',
+            'explain' => '効果なし。弾切れだ',
+        ]);
+
+        Item::create([
             'name' => 'Hone',
             'effect' => 0,
             'bestItem_name' => 'Sword',
@@ -54,34 +82,6 @@ class ItemsTableSeeder extends Seeder
             'effect' => 0,
             'bestItem_name' => '',
             'explain' => '効果なし。無駄に出来がいい',
-        ]);
-
-        Item::create([
-            'name' => 'HandGun',
-            'effect' => 0,
-            'bestItem_name' => '',
-            'explain' => '効果なし。弾切れだ',
-        ]);
-
-        Item::create([
-            'name' => 'JOKER',
-            'effect' => 0,
-            'bestItem_name' => '',
-            'explain' => '効果なし。不吉だ',
-        ]);
-
-        Item::create([
-            'name' => 'HandyDrill',
-            'effect' => 0,
-            'bestItem_name' => '',
-            'explain' => '攻撃時、ブロックを破壊',
-        ]);
-
-        Item::create([
-            'name' => 'VampireWrench',
-            'effect' => 0,
-            'bestItem_name' => '',
-            'explain' => '吸血鬼お墨付きのレンチ！！！\n攻撃時、HP回復+1',
         ]);
     }
 }

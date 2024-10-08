@@ -99,10 +99,6 @@ class BattleModeController extends Controller
                 if ($validator->fails()) {
                     return response()->json($validator->errors(), 400);
                 }
-
-                # リクエストされたユーザID指定で取得
-                $deck = Deck::where('user_id', '=', $request->user()->id)
-                    ->where('card_id', '=', $request->card_id)->get();
                 # DBに追加
                 Deck::create([
                     'user_id' => $request->user()->id,
