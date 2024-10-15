@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->integer('stack');   #使用枚数
             $table->timestamps();
 
-            $table->index(['user_id', 'card_id']);
+            $table->unique(['user_id', 'card_id']);
         });
     }
 

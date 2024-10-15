@@ -51,6 +51,10 @@ Route::prefix('battleMode')->name('battleMode.')->controller(BattleModeControlle
         Route::get('show/{user_id}', 'show')->name('show');
         # リザルト検索
         Route::get('result/{user_id}', 'result_show')->name('result/show');
+        # 使用済みカード検索
+        Route::get('usedCard/{user_id}', 'usedCard_show')->name('usedCard/show');
+        # 防衛デッキ検索
+        Route::get('defenseDeck/{user_id}', 'defenseDeck_show')->name('defenseDeck/show');
     });
 
 # バトルモード更新グループ
@@ -62,6 +66,14 @@ Route::prefix('battleMode')->name('battleMode.')->controller(BattleModeControlle
         Route::post('deck/destroy', 'deck_destroy')->name('deck/destroy');
         # デッキ更新
         Route::post('deck/update', 'deck_update')->name('deck/update');
+        # 防衛デッキ削除
+        Route::post('defenseDeck/destroy', 'defense_deck_destroy')->name('defenseDeck/destroy');
+        # 防衛デッキ更新
+        Route::post('defenseDeck/update', 'defense_deck_update')->name('defenseDeck/update');
+        # 使用済みカード更新
+        Route::post('usedCard/update', 'usedCard_update')->name('usedCard/update');
+        # 使用済みカード削除
+        Route::post('usedCard/destroy', 'usedCard_destroy')->name('usedCard/destroy');
     });
 
 # ==============================

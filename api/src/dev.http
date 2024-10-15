@@ -62,6 +62,14 @@ Accept: application/json
 GET http://localhost:8000/api/follows/1
 Accept: application/json
 
+###使用済みカード検索結果取得
+GET http://localhost:8000/api/battleMode/usedCard/1
+Accept: application/json
+
+###防衛デッキ検索結果取得
+GET http://localhost:8000/api/battleMode/defenseDeck/2
+Accept: application/json
+
 ###ユーザ登録
 POST http://localhost:8000/api/users/store
 Content-Type: application/json
@@ -146,7 +154,7 @@ Accept: application/json
 POST http://localhost:8000/api/battleMode/deck/update
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer 2|YjOz1PIoenVo2q65DUHbZ3UVK75oDtCkBeymfF1n3734492a
+Authorization: Bearer 2|BuDlyOyDZjrgniu0in6vqHUnL7xBlew9HOkSPnCA82ebc553
 
 {
     "card_id": "3"
@@ -156,20 +164,63 @@ Authorization: Bearer 2|YjOz1PIoenVo2q65DUHbZ3UVK75oDtCkBeymfF1n3734492a
 POST http://localhost:8000/api/battleMode/deck/destroy
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer 1|tX3ugwcqD0KsAu5YxWDfB6mM50t6B6b3A4I53FSsd2b70193
+Authorization: Bearer 2|BuDlyOyDZjrgniu0in6vqHUnL7xBlew9HOkSPnCA82ebc553
 
 {
     "card_id": "3"
+}
+
+###防衛デッキ更新
+POST http://localhost:8000/api/battleMode/defenseDeck/update
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 2|BuDlyOyDZjrgniu0in6vqHUnL7xBlew9HOkSPnCA82ebc553
+
+{
+    "card_id": "3"
+}
+
+###防衛デッキ消去
+POST http://localhost:8000/api/battleMode/defenseDeck/destroy
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 2|BuDlyOyDZjrgniu0in6vqHUnL7xBlew9HOkSPnCA82ebc553
+
+{
+    "card_id": "3"
+}
+
+###使用済みカード更新
+POST http://localhost:8000/api/battleMode/usedCard/update
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 2|BuDlyOyDZjrgniu0in6vqHUnL7xBlew9HOkSPnCA82ebc553
+
+{
+    "card_id": "3",
+    "stack": "5"
+}
+
+###使用済みカード消去
+POST http://localhost:8000/api/battleMode/usedCard/destroy
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 2|BuDlyOyDZjrgniu0in6vqHUnL7xBlew9HOkSPnCA82ebc553
+
+{
+    "card_id": "3",
+    "stack": "5"
 }
 
 ###リザルト更新
 POST http://localhost:8000/api/battleMode/result/update
 Content-Type: application/json
 Accept: application/json
+Authorization: Bearer 2|BuDlyOyDZjrgniu0in6vqHUnL7xBlew9HOkSPnCA82ebc553
 
 {
-    "winner_id": "15",
-    "loser_id": "8"
+    "judge": "1",
+    "battle_user_id": "8"
 }
 
 ###VM FindUser
