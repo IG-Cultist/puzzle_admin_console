@@ -11,16 +11,16 @@
                         <tr>
                             <th>ID</th>
                             <th>名称</th>
-                            <th>効果値</th>
-                            <th>説明</th>
+                            <th>種別</th>
+                            <th>枚数</th>
                         </tr>
                         </thead>
                         @foreach($card as $item)
                             <tr>
                                 <td>{{$item->id}}</td>
                                 <td>{{$item->name}}</td>
-                                <td>{{$item->effect}}</td>
-                                <td>{{$item->explain}}</td>
+                                <td>{{$item->type}}</td>
+                                <td>{{$item->stack}}</td>
                             </tr>
                         @endforeach
                     </table>

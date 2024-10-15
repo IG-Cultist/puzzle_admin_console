@@ -91,6 +91,10 @@ Route::middleware(NoCacheMiddleWare::class)->group(function () {
             Route::get('result', 'result')->name('result');
             # 使用可能カード一覧画面
             Route::get('usableCard', 'usableCard')->name('usableCard');
+            # 使用済みカード一覧画面
+            Route::get('usedCard', 'usedCard')->name('usedCard');
+            # 防衛デッキ一覧画面
+            Route::get('defenseDeck', 'defenseDeck')->name('defenseDeck');
 
             # 検索処理
             Route::post('{id}/show', 'show')->name('show');
@@ -98,6 +102,10 @@ Route::middleware(NoCacheMiddleWare::class)->group(function () {
             Route::post('{id}/showDeck', 'showDeck')->name('showDeck');
             # リザルト検索処理
             Route::post('{id}/showResult', 'showResult')->name('showResult');
+            # 使用済みカード検索処理
+            Route::post('{id}/showUsedCard', 'showUsedCard')->name('showUsedCard');
+            # 防衛デッキ検索処理
+            Route::post('{id}/showDefenseDeck', 'showDefenseDeck')->name('showDefenseDeck');
         });
 
     # ログイン画面

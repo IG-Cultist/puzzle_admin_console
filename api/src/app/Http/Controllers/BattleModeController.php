@@ -47,7 +47,8 @@ class BattleModeController extends Controller
     #戦闘結果の検索処理
     public function result_show(Request $request)
     {
-        $deck = Result::where('winner_id', '=', $request->user()->id)->get();
+        $deck = Result::where('winner_id', '=', $request->user()->id)
+            ->orWhere('loser_id', '=', $request->user()->id)->get();
         return response()->json(ResultResource::collection($deck));   #collectionで複数所得
     }
 
@@ -58,24 +59,28 @@ class BattleModeController extends Controller
             //トランザクション処理
             $response = DB::transaction(function () use ($request) {
                 $validator = Validator::make($request->all(), [
-                    'loser_id' => ['required', 'int'],
+                    'judge' => ['required', 'int'],
                 ]);
                 if ($validator->fails()) {
                     return response()->json($validator->errors(), 400);
                 }
 
                 # リクエストされたユーザID指定で取得
-                $result = Result::where('winner_id', '=', $request->user()->id)
-                    ->where('loser_id', '=', $request->loser_id)->get();
+                #$result = Result::where('winner_id', '=', $request->user()->id)
+                #    ->where('loser_id', '=', $request->loser_id)->get();
 
-                if (count($result) !== 0) { #すでに記録している場合、処理をしない
-                    return response()->json($validator->errors(), 400);
-                } else { #新しく設定した場合
-                    # DBに追加
+                if ($request->judge == 1) { #1の場合プレイヤーの勝利
                     Result::create([
                         'winner_id' => $request->user()->id,
-                        'loser_id' => $request->loser_id
+                        'loser_id' => $request->battle_user_id
                     ]);
+                } elseif ($request->judge == 0) { #0の場合ユーザの敗北
+                    Result::create([
+                        'winner_id' => $request->battle_user_id,
+                        'loser_id' => $request->user()->id
+                    ]);
+                } else {
+                    return response()->json($validator->errors(), 400);
                 }
             });
             if (isset($response)) {
@@ -101,6 +106,33 @@ class BattleModeController extends Controller
                 }
                 # DBに追加
                 Deck::create([
+                    'user_id' => $request->user()->id,
+                    'card_id' => $request->card_id
+                ]);
+            });
+            if (isset($response)) {
+                return $response;
+            }
+            return response()->json();
+        } catch (Exception $e) {
+            return response()->json($e, 500);
+        }
+    }
+
+    #デッキ情報の更新
+    public function defense_deck_update(Request $request)
+    {
+        try {
+            //トランザクション処理
+            $response = DB::transaction(function () use ($request) {
+                $validator = Validator::make($request->all(), [
+                    'card_id' => ['required', 'int'],
+                ]);
+                if ($validator->fails()) {
+                    return response()->json($validator->errors(), 400);
+                }
+                # DBに追加
+                Defense_Deck::create([
                     'user_id' => $request->user()->id,
                     'card_id' => $request->card_id
                 ]);

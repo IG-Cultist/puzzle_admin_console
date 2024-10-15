@@ -129,6 +129,20 @@
                                        type="submit" value="戦歴情報">
                             </form>
                         </li>
+                        <li>
+                            <form method="get" action="{{route('battles.defenseDeck')}}">
+                                @csrf
+                                <input class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                       type="submit" value="防衛デッキ情報">
+                            </form>
+                        </li>
+                        <li>
+                            <form method="get" action="{{route('battles.usedCard')}}">
+                                @csrf
+                                <input class="link-body-emphasis d-inline-flex text-decoration-none rounded"
+                                       type="submit" value="使用済みカード情報">
+                            </form>
+                        </li>
                     </ul>
                 </div>
             </li>
