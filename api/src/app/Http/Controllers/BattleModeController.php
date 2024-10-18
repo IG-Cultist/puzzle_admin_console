@@ -86,7 +86,7 @@ class BattleModeController extends Controller
     }
 
     # ======================
-    # リザルト更新処理
+    # リザルト&使用済みカード更新処理
     # ======================
     public function result_update(Request $request)
     {
@@ -101,10 +101,6 @@ class BattleModeController extends Controller
                     return response()->json($validator->errors(), 400);
                 }
 
-                # リクエストされたユーザID指定で取得
-                #$result = Result::where('winner_id', '=', $request->user()->id)
-                #    ->where('loser_id', '=', $request->loser_id)->get();
-
                 if ($request->judge == 1) { #1の場合プレイヤーの勝利
                     Result::create([
                         'winner_id' => $request->user()->id,
@@ -117,6 +113,26 @@ class BattleModeController extends Controller
                     ]);
                 } else {
                     return response()->json($validator->errors(), 400);
+                }
+
+                # 使用したカードを使用済みとする
+                $deck = Deck::where('user_id', '=', $request->user()->id)->get();
+                foreach ($deck as $item) { #取得したカード4枚分ループ
+                    # リクエストされたユーザID指定で取得
+                    $card = UsedCard::where('user_id', '=', $request->user()->id)
+                        ->where('card_id', '=', $item->card_id)->get();
+
+                    # 既に存在していた場合、スタックを加算
+                    if (count($card) !== 0) {
+                        $card[0]['stack'] += 1;
+                        $card[0]->save();
+                    } else { #ない場合、新規作成
+                        UsedCard::create([
+                            'user_id' => $request->user()->id,
+                            'card_id' => $item->card_id,
+                            'stack' => 1
+                        ]);
+                    }
                 }
             });
             if (isset($response)) {
@@ -244,48 +260,6 @@ class BattleModeController extends Controller
                 } else { #存在していなかった場合、処理しない
                     return response()->json($validator->errors(), 400);
                 }
-            });
-            if (isset($response)) {
-                return $response;
-            }
-            return response()->json();
-        } catch (Exception $e) {
-            return response()->json($e, 500);
-        }
-    }
-
-    # ======================
-    # 使用済みカード更新処理
-    # ======================
-    public function usedCard_update(Request $request)
-    {
-        try {
-            //トランザクション処理
-            $response = DB::transaction(function () use ($request) {
-                $validator = Validator::make($request->all(), [
-                    'card_id' => ['required', 'int'],
-                    'stack' => ['required', 'int'],
-                ]);
-                if ($validator->fails()) {
-                    return response()->json($validator->errors(), 400);
-                }
-
-                # リクエストされたユーザID指定で取得
-                $card = UsedCard::where('user_id', '=', $request->user()->id)
-                    ->where('card_id', '=', $request->card_id)->get();
-
-                # 既に存在していた場合、スタックを加算
-                if (count($card) !== 0) {
-                    $card[0]['stack'] += $request->stack;
-                    $card[0]->save();
-                } else { # ない場合、新規作成
-                    UsedCard::create([
-                        'user_id' => $request->user()->id,
-                        'card_id' => $request->card_id,
-                        'stack' => $request->stack
-                    ]);
-                }
-
             });
             if (isset($response)) {
                 return $response;

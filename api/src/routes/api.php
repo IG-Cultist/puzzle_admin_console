@@ -70,8 +70,6 @@ Route::prefix('battleMode')->name('battleMode.')->controller(BattleModeControlle
         Route::post('defenseDeck/destroy', 'defense_deck_destroy')->name('defenseDeck/destroy');
         # 防衛デッキ更新
         Route::post('defenseDeck/update', 'defense_deck_update')->name('defenseDeck/update');
-        # 使用済みカード更新
-        Route::post('usedCard/update', 'usedCard_update')->name('usedCard/update');
         # 使用済みカード削除
         Route::post('usedCard/destroy', 'usedCard_destroy')->name('usedCard/destroy');
     });

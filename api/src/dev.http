@@ -157,7 +157,7 @@ Accept: application/json
 Authorization: Bearer 2|BuDlyOyDZjrgniu0in6vqHUnL7xBlew9HOkSPnCA82ebc553
 
 {
-    "card_id": "3"
+    "card_id": "4"
 }
 
 ###デッキ消去
@@ -188,17 +188,6 @@ Authorization: Bearer 2|BuDlyOyDZjrgniu0in6vqHUnL7xBlew9HOkSPnCA82ebc553
 
 {
     "card_id": "3"
-}
-
-###使用済みカード更新
-POST http://localhost:8000/api/battleMode/usedCard/update
-Content-Type: application/json
-Accept: application/json
-Authorization: Bearer 2|BuDlyOyDZjrgniu0in6vqHUnL7xBlew9HOkSPnCA82ebc553
-
-{
-    "card_id": "3",
-    "stack": "5"
 }
 
 ###使用済みカード消去
