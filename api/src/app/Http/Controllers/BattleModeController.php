@@ -70,7 +70,7 @@ class BattleModeController extends Controller
     # ======================
     # 防衛デッキ検索処理
     # ======================
-    public function defenseDeck_show(Request $request)
+    public function defenceDeck_show(Request $request)
     {
         $deck = DefenseDeck::where('user_id', '=', $request->user()->id)->get();
         return response()->json(DefenseDeckResource::collection($deck));   #collectionで複数所得
@@ -176,7 +176,7 @@ class BattleModeController extends Controller
     # ======================
     # 防衛デッキ更新処理
     # ======================
-    public function defense_deck_update(Request $request)
+    public function defence_deck_update(Request $request)
     {
         try {
             //トランザクション処理
@@ -239,7 +239,7 @@ class BattleModeController extends Controller
     # ======================
     # 防衛デッキ消去処理
     # ======================
-    public function defense_deck_destroy(Request $request)
+    public function defence_deck_destroy(Request $request)
     {
         try {
             //トランザクション処理

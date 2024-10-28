@@ -171,7 +171,7 @@ Authorization: Bearer 2|BuDlyOyDZjrgniu0in6vqHUnL7xBlew9HOkSPnCA82ebc553
 }
 
 ###防衛デッキ更新
-POST http://localhost:8000/api/battleMode/defenseDeck/update
+POST http://localhost:8000/api/battleMode/defenceDeck/update
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer 2|BuDlyOyDZjrgniu0in6vqHUnL7xBlew9HOkSPnCA82ebc553
@@ -181,7 +181,7 @@ Authorization: Bearer 2|BuDlyOyDZjrgniu0in6vqHUnL7xBlew9HOkSPnCA82ebc553
 }
 
 ###防衛デッキ消去
-POST http://localhost:8000/api/battleMode/defenseDeck/destroy
+POST http://localhost:8000/api/battleMode/defenceDeck/destroy
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer 2|BuDlyOyDZjrgniu0in6vqHUnL7xBlew9HOkSPnCA82ebc553
