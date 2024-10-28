@@ -74,6 +74,10 @@ Route::prefix('battleMode')->name('battleMode.')->controller(BattleModeControlle
         Route::get('defenseDeck/show', 'defenceDeck_show')->name('defenceDeck/show');
     });
 
+# トークン生成
+Route::middleware(NoCacheMiddleWare::class)
+    ->post('createToken', [UserController::class, 'createToken']);
+
 # ==============================
 # 未使用API
 # ==============================

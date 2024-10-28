@@ -213,7 +213,7 @@ Authorization: Bearer 2|BuDlyOyDZjrgniu0in6vqHUnL7xBlew9HOkSPnCA82ebc553
 }
 
 ###VM FindUser
-GET https://api-deadlydraw.japaneast.cloudapp.azure.com/api/users/101
+GET https://api-deadlydraw.japaneast.cloudapp.azure.com/api/users/10
 Accept: application/json
 
 ###VM ShowStages
