@@ -43,18 +43,8 @@ Route::prefix('battleMode')->name('battleMode.')->controller(BattleModeControlle
     ->middleware(NoCacheMiddleWare::class)->group(function () {
         # 使用可能カード一覧
         Route::get('usableCard', 'usableCard')->name('usableCard');
-        # デッキ検索
-        Route::get('deck/{user_id}', 'deck_show')->name('deck/show');
         # バトルモードプロフィール一覧
         Route::get('', 'index')->name('index');
-        # バトルモードプロフィール検索
-        Route::get('show/{user_id}', 'show')->name('show');
-        # リザルト検索
-        Route::get('result/{user_id}', 'result_show')->name('result/show');
-        # 使用済みカード検索
-        Route::get('usedCard/{user_id}', 'usedCard_show')->name('usedCard/show');
-        # 防衛デッキ検索
-        Route::get('defenseDeck/{user_id}', 'defenseDeck_show')->name('defenseDeck/show');
     });
 
 # バトルモード更新グループ
@@ -72,6 +62,16 @@ Route::prefix('battleMode')->name('battleMode.')->controller(BattleModeControlle
         Route::post('defenseDeck/update', 'defense_deck_update')->name('defenseDeck/update');
         # 使用済みカード削除
         Route::post('usedCard/destroy', 'usedCard_destroy')->name('usedCard/destroy');
+        # デッキ検索
+        Route::get('deck/show', 'deck_show')->name('deck/show');
+        # バトルモードプロフィール検索
+        Route::get('show', 'show')->name('show');
+        # リザルト検索
+        Route::get('result/show', 'result_show')->name('result/show');
+        # 使用済みカード検索
+        Route::get('usedCard/show', 'usedCard_show')->name('usedCard/show');
+        # 防衛デッキ検索
+        Route::get('defenseDeck/show', 'defenseDeck_show')->name('defenseDeck/show');
     });
 
 # ==============================

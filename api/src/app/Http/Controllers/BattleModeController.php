@@ -44,7 +44,7 @@ class BattleModeController extends Controller
     # ======================
     public function show(Request $request)
     {
-        $user = BattleMode::where('user_id', '=', $request->user_id)->get();
+        $user = BattleMode::where('user_id', '=', $request->user()->id)->get();
         return response()->json(BattleModeResource::collection($user));   #collectionで複数所得
     }
 
@@ -53,7 +53,7 @@ class BattleModeController extends Controller
     # ======================
     public function deck_show(Request $request)
     {
-        $deck = Deck::where('user_id', '=', $request->user_id)->get();
+        $deck = Deck::where('user_id', '=', $request->user()->id)->get();
         return response()->json(DeckResource::collection($deck));   #collectionで複数所得
     }
 
@@ -62,7 +62,7 @@ class BattleModeController extends Controller
     # ======================
     public function result_show(Request $request)
     {
-        $deck = Result::where('winner_id', '=', $request->user_id)
+        $deck = Result::where('winner_id', '=', $request->user()->id)
             ->orWhere('loser_id', '=', $request->user()->id)->get();
         return response()->json(ResultResource::collection($deck));   #collectionで複数所得
     }
@@ -72,7 +72,7 @@ class BattleModeController extends Controller
     # ======================
     public function defenseDeck_show(Request $request)
     {
-        $deck = DefenseDeck::where('user_id', '=', $request->user_id)->get();
+        $deck = DefenseDeck::where('user_id', '=', $request->user()->id)->get();
         return response()->json(DefenseDeckResource::collection($deck));   #collectionで複数所得
     }
 
@@ -81,7 +81,7 @@ class BattleModeController extends Controller
     # ======================
     public function usedCard_show(Request $request)
     {
-        $card = Deck::where('user_id', '=', $request->user_id)->get();
+        $card = Deck::where('user_id', '=', $request->user()->id)->get();
         return response()->json(UsedCardResource::collection($card));   #collectionで複数所得
     }
 

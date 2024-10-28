@@ -233,5 +233,10 @@ GET https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode/usableCar
 Accept: application/json
 
 ###VM Show Show BattleMode Profile
-GET https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode/show/1
+GET https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode/show/3
 Accept: application/json
+
+###Show Deck
+GET http://localhost:8000/api/battleMode/deck/show
+Accept: application/json
+Authorization: Bearer 2|BuDlyOyDZjrgniu0in6vqHUnL7xBlew9HOkSPnCA82ebc553
