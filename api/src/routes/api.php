@@ -52,12 +52,8 @@ Route::prefix('battleMode')->name('battleMode.')->controller(BattleModeControlle
     ->middleware(NoCacheMiddleWare::class)->middleware('auth:sanctum')->group(function () {
         # リザルト更新
         Route::post('result/update', 'result_update')->name('result/update');
-        # デッキ削除
-        Route::post('deck/destroy', 'deck_destroy')->name('deck/destroy');
         # デッキ更新
         Route::post('deck/update', 'deck_update')->name('deck/update');
-        # 防衛デッキ削除
-        Route::post('defenceDeck/destroy', 'defence_deck_destroy')->name('defenceDeck/destroy');
         # 防衛デッキ更新
         Route::post('defenseDeck/update', 'defence_deck_update')->name('defenceDeck/update');
         # 使用済みカード削除

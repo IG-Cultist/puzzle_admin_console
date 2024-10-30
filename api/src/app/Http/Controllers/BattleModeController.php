@@ -153,16 +153,46 @@ class BattleModeController extends Controller
             //トランザクション処理
             $response = DB::transaction(function () use ($request) {
                 $validator = Validator::make($request->all(), [
-                    'card_id' => ['required', 'int'],
+                    'card1' => ['int'],
+                    'card2' => ['int'],
+                    'card3' => ['int'],
+                    'card4' => ['int']
                 ]);
                 if ($validator->fails()) {
                     return response()->json($validator->errors(), 400);
                 }
-                # DBに追加
-                Deck::create([
-                    'user_id' => $request->user()->id,
-                    'card_id' => $request->card_id
-                ]);
+
+                # 該当ユーザのデッキを全て削除
+                Deck::where('user_id', '=', $request->user()->id)->delete();
+
+                if ($request->card1 !== null) {
+                    # DBに追加
+                    Deck::create([
+                        'user_id' => $request->user()->id,
+                        'card_id' => $request->card1
+                    ]);
+                }
+                if ($request->card2 !== null) {
+                    # DBに追加
+                    Deck::create([
+                        'user_id' => $request->user()->id,
+                        'card_id' => $request->card2
+                    ]);
+                }
+                if ($request->card3 !== null) {
+                    # DBに追加
+                    Deck::create([
+                        'user_id' => $request->user()->id,
+                        'card_id' => $request->card3
+                    ]);
+                }
+                if ($request->card4 !== null) {
+                    # DBに追加
+                    Deck::create([
+                        'user_id' => $request->user()->id,
+                        'card_id' => $request->card4
+                    ]);
+                }
             });
             if (isset($response)) {
                 return $response;
@@ -182,83 +212,45 @@ class BattleModeController extends Controller
             //トランザクション処理
             $response = DB::transaction(function () use ($request) {
                 $validator = Validator::make($request->all(), [
-                    'card_id' => ['required', 'int'],
-                ]);
-                if ($validator->fails()) {
-                    return response()->json($validator->errors(), 400);
-                }
-                # DBに追加
-                DefenseDeck::create([
-                    'user_id' => $request->user()->id,
-                    'card_id' => $request->card_id
-                ]);
-            });
-            if (isset($response)) {
-                return $response;
-            }
-            return response()->json();
-        } catch (Exception $e) {
-            return response()->json($e, 500);
-        }
-    }
-
-    # ======================
-    # デッキ消去処理
-    # ======================
-    public function deck_destroy(Request $request)
-    {
-        try {
-            //トランザクション処理
-            $response = DB::transaction(function () use ($request) {
-                $validator = Validator::make($request->all(), [
-                    'card_id' => ['required', 'int'],
+                    'card1' => ['int'],
+                    'card2' => ['int'],
+                    'card3' => ['int'],
+                    'card4' => ['int']
                 ]);
                 if ($validator->fails()) {
                     return response()->json($validator->errors(), 400);
                 }
 
-                # リクエストされたユーザID指定で取得
-                $deck = Deck::where('user_id', '=', $request->user()->id)
-                    ->where('card_id', '=', $request->card_id)->get();
+                # 該当ユーザのデッキを全て削除
+                DefenseDeck::where('user_id', '=', $request->user()->id)->delete();
 
-                if (count($deck) !== 0) { #指定情報があった場合
-                    $deck[0]->delete(); #指定カラムを削除
-                } else { #存在していなかった場合、処理しない
-                    return response()->json($validator->errors(), 400);
+                if ($request->card1 !== null) {
+                    # DBに追加
+                    DefenseDeck::create([
+                        'user_id' => $request->user()->id,
+                        'card_id' => $request->card1
+                    ]);
                 }
-            });
-            if (isset($response)) {
-                return $response;
-            }
-            return response()->json();
-        } catch (Exception $e) {
-            return response()->json($e, 500);
-        }
-    }
-
-    # ======================
-    # 防衛デッキ消去処理
-    # ======================
-    public function defence_deck_destroy(Request $request)
-    {
-        try {
-            //トランザクション処理
-            $response = DB::transaction(function () use ($request) {
-                $validator = Validator::make($request->all(), [
-                    'card_id' => ['required', 'int'],
-                ]);
-                if ($validator->fails()) {
-                    return response()->json($validator->errors(), 400);
+                if ($request->card2 !== null) {
+                    # DBに追加
+                    DefenseDeck::create([
+                        'user_id' => $request->user()->id,
+                        'card_id' => $request->card2
+                    ]);
                 }
-
-                # リクエストされたユーザID指定で取得
-                $deck = DefenseDeck::where('user_id', '=', $request->user()->id)
-                    ->where('card_id', '=', $request->card_id)->get();
-
-                if (count($deck) !== 0) { #指定情報があった場合
-                    $deck[0]->delete(); #指定カラムを削除
-                } else { #存在していなかった場合、処理しない
-                    return response()->json($validator->errors(), 400);
+                if ($request->card3 !== null) {
+                    # DBに追加
+                    DefenseDeck::create([
+                        'user_id' => $request->user()->id,
+                        'card_id' => $request->card3
+                    ]);
+                }
+                if ($request->card4 !== null) {
+                    # DBに追加
+                    DefenseDeck::create([
+                        'user_id' => $request->user()->id,
+                        'card_id' => $request->card4
+                    ]);
                 }
             });
             if (isset($response)) {

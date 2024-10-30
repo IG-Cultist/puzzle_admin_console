@@ -38,10 +38,6 @@ Accept: application/json
 GET http://localhost:8000/api/battleMode
 Accept: application/json
 
-###デッキ検索結果取得
-GET http://localhost:8000/api/battleMode/deck/4
-Accept: application/json
-
 ###バトルモード検索結果取得
 GET http://localhost:8000/api/battleMode/result/1
 Accept: application/json
@@ -76,7 +72,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-    "name": "tera"
+    "name": "mogu"
 }
 
 ###ユーザ更新
@@ -150,38 +146,24 @@ Accept: application/json
     "progress": "14"
 }
 
+###デッキ検索結果取得
+GET http://localhost:8000/api/battleMode/deck/show
+Accept: application/json
+Authorization: Bearer 3|Xt6lri1apieCIbDqPq0eaEYVZbIwGG4zxV1eo030fb5475d7
+
 ###デッキ更新
 POST http://localhost:8000/api/battleMode/deck/update
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer 2|BuDlyOyDZjrgniu0in6vqHUnL7xBlew9HOkSPnCA82ebc553
+Authorization: Bearer 3|Xt6lri1apieCIbDqPq0eaEYVZbIwGG4zxV1eo030fb5475d7
 
 {
-    "card_id": "4"
-}
-
-###デッキ消去
-POST http://localhost:8000/api/battleMode/deck/destroy
-Content-Type: application/json
-Accept: application/json
-Authorization: Bearer 2|BuDlyOyDZjrgniu0in6vqHUnL7xBlew9HOkSPnCA82ebc553
-
-{
-    "card_id": "3"
+    "card1": "1",
+    "card2": "1"
 }
 
 ###防衛デッキ更新
 POST http://localhost:8000/api/battleMode/defenceDeck/update
-Content-Type: application/json
-Accept: application/json
-Authorization: Bearer 2|BuDlyOyDZjrgniu0in6vqHUnL7xBlew9HOkSPnCA82ebc553
-
-{
-    "card_id": "3"
-}
-
-###防衛デッキ消去
-POST http://localhost:8000/api/battleMode/defenceDeck/destroy
 Content-Type: application/json
 Accept: application/json
 Authorization: Bearer 2|BuDlyOyDZjrgniu0in6vqHUnL7xBlew9HOkSPnCA82ebc553
@@ -237,6 +219,19 @@ GET https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode/show/3
 Accept: application/json
 
 ###Show Deck
-GET http://localhost:8000/api/battleMode/deck/show
+GET https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode/deck/show
 Accept: application/json
-Authorization: Bearer 2|BuDlyOyDZjrgniu0in6vqHUnL7xBlew9HOkSPnCA82ebc553
+Authorization: Bearer 16|xJ8AdpN5V9fWB4uTfAlu6e6TAvazSqRz4En4ngoo132fbb07
+
+###デッキ更新
+POST https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode/deck/update
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 16|xJ8AdpN5V9fWB4uTfAlu6e6TAvazSqRz4En4ngoo132fbb07
+
+{
+    "card1": "1",
+    "card2": "1",
+    "card3": "2",
+    "card4": "3"
+}
