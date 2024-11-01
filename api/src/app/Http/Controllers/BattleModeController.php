@@ -165,28 +165,28 @@ class BattleModeController extends Controller
                 # 該当ユーザのデッキを全て削除
                 Deck::where('user_id', '=', $request->user()->id)->delete();
 
-                if ($request->card1 !== null) {
+                if ($request->card1 !== null && $request->card1 !== 0) {
                     # DBに追加
                     Deck::create([
                         'user_id' => $request->user()->id,
                         'card_id' => $request->card1
                     ]);
                 }
-                if ($request->card2 !== null) {
+                if ($request->card2 !== null && $request->card2 !== 0) {
                     # DBに追加
                     Deck::create([
                         'user_id' => $request->user()->id,
                         'card_id' => $request->card2
                     ]);
                 }
-                if ($request->card3 !== null) {
+                if ($request->card3 !== null && $request->card3 !== 0) {
                     # DBに追加
                     Deck::create([
                         'user_id' => $request->user()->id,
                         'card_id' => $request->card3
                     ]);
                 }
-                if ($request->card4 !== null) {
+                if ($request->card4 !== null && $request->card4 !== 0) {
                     # DBに追加
                     Deck::create([
                         'user_id' => $request->user()->id,
@@ -224,28 +224,28 @@ class BattleModeController extends Controller
                 # 該当ユーザのデッキを全て削除
                 DefenseDeck::where('user_id', '=', $request->user()->id)->delete();
 
-                if ($request->card1 !== null) {
+                if ($request->card1 !== null && $request->card2 !== 0) {
                     # DBに追加
                     DefenseDeck::create([
                         'user_id' => $request->user()->id,
                         'card_id' => $request->card1
                     ]);
                 }
-                if ($request->card2 !== null) {
+                if ($request->card2 !== null && $request->card2 !== 0) {
                     # DBに追加
                     DefenseDeck::create([
                         'user_id' => $request->user()->id,
                         'card_id' => $request->card2
                     ]);
                 }
-                if ($request->card3 !== null) {
+                if ($request->card3 !== null && $request->card2 !== 0) {
                     # DBに追加
                     DefenseDeck::create([
                         'user_id' => $request->user()->id,
                         'card_id' => $request->card3
                     ]);
                 }
-                if ($request->card4 !== null) {
+                if ($request->card4 !== null && $request->card2 !== 0) {
                     # DBに追加
                     DefenseDeck::create([
                         'user_id' => $request->user()->id,
