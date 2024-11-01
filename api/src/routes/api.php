@@ -55,7 +55,7 @@ Route::prefix('battleMode')->name('battleMode.')->controller(BattleModeControlle
         # デッキ更新
         Route::post('deck/update', 'deck_update')->name('deck/update');
         # 防衛デッキ更新
-        Route::post('defenseDeck/update', 'defence_deck_update')->name('defenceDeck/update');
+        Route::post('defenceDeck/update', 'defence_deck_update')->name('defenceDeck/update');
         # 使用済みカード削除
         Route::post('usedCard/destroy', 'usedCard_destroy')->name('usedCard/destroy');
         # デッキ検索
@@ -67,7 +67,7 @@ Route::prefix('battleMode')->name('battleMode.')->controller(BattleModeControlle
         # 使用済みカード検索
         Route::get('usedCard/show', 'usedCard_show')->name('usedCard/show');
         # 防衛デッキ検索
-        Route::get('defenseDeck/show', 'defenceDeck_show')->name('defenceDeck/show');
+        Route::get('defenceDeck/show', 'defenceDeck_show')->name('defenceDeck/show');
     });
 
 # トークン生成

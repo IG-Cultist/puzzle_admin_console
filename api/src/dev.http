@@ -63,8 +63,9 @@ GET http://localhost:8000/api/battleMode/usedCard/1
 Accept: application/json
 
 ###防衛デッキ検索結果取得
-GET http://localhost:8000/api/battleMode/defenseDeck/2
+GET http://localhost:8000/api/battleMode/defenceDeck/show
 Accept: application/json
+Authorization: Bearer 3|Xt6lri1apieCIbDqPq0eaEYVZbIwGG4zxV1eo030fb5475d7
 
 ###ユーザ登録
 POST http://localhost:8000/api/users/store
@@ -166,10 +167,10 @@ Authorization: Bearer 3|Xt6lri1apieCIbDqPq0eaEYVZbIwGG4zxV1eo030fb5475d7
 POST http://localhost:8000/api/battleMode/defenceDeck/update
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer 2|BuDlyOyDZjrgniu0in6vqHUnL7xBlew9HOkSPnCA82ebc553
+Authorization: Bearer 3|Xt6lri1apieCIbDqPq0eaEYVZbIwGG4zxV1eo030fb5475d7
 
 {
-    "card_id": "3"
+    "card1": "3"
 }
 
 ###使用済みカード消去
@@ -220,6 +221,11 @@ Accept: application/json
 
 ###Show Deck
 GET https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode/deck/show
+Accept: application/json
+Authorization: Bearer 16|xJ8AdpN5V9fWB4uTfAlu6e6TAvazSqRz4En4ngoo132fbb07
+
+###Show Defence Deck
+GET https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode/defenceDeck/show
 Accept: application/json
 Authorization: Bearer 16|xJ8AdpN5V9fWB4uTfAlu6e6TAvazSqRz4En4ngoo132fbb07
 
