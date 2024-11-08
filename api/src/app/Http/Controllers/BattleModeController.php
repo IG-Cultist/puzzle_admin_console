@@ -53,7 +53,7 @@ class BattleModeController extends Controller
     # ======================
     public function deck_show(Request $request)
     {
-        $deck = Deck::where('user_id', '=', $request->user()->id)->get();
+        $deck = Deck::where('user_id', '=', $request->user()->id)->orderBy('id')->get();
         return response()->json(DeckResource::collection($deck));   #collectionで複数所得
     }
 
