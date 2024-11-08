@@ -77,6 +77,15 @@ class BattleModeController extends Controller
     }
 
     # ======================
+    # 防衛デッキ枚数検索処理
+    # ======================
+    public function defenceDeckCount_show(Request $request)
+    {
+        $deck = DefenseDeck::where('user_id', '=', $request->user_id)->orderBy('id')->get();
+        return response()->json(DefenseDeckResource::collection($deck));   #collectionで複数所得
+    }
+
+    # ======================
     # 使用済みカード検索処理
     # ======================
     public function usedCard_show(Request $request)

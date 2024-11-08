@@ -43,6 +43,8 @@ Route::prefix('battleMode')->name('battleMode.')->controller(BattleModeControlle
     ->middleware(NoCacheMiddleWare::class)->group(function () {
         # 使用可能カード一覧
         Route::get('usableCard', 'usableCard')->name('usableCard');
+        # 防衛デッキ枚数検索処理
+        Route::get('defenceDeckCount/show', 'defenceDeckCount_show')->name('defenceDeckCount/show');
         # バトルモードプロフィール一覧
         Route::get('', 'index')->name('index');
     });
