@@ -47,11 +47,15 @@ Route::prefix('battleMode')->name('battleMode.')->controller(BattleModeControlle
         Route::get('defenceDeckCount/show', 'defenceDeckCount_show')->name('defenceDeckCount/show');
         # バトルモードプロフィール一覧
         Route::get('', 'index')->name('index');
+        # ランダムなライバル3名取得処理
+        Route::get('rivals/get', 'rivals_get')->name('rivals/get');
     });
 
 # バトルモード更新グループ
 Route::prefix('battleMode')->name('battleMode.')->controller(BattleModeController::class)
     ->middleware(NoCacheMiddleWare::class)->middleware('auth:sanctum')->group(function () {
+        # バトルモードプロフィール追加
+        Route::post('store', 'store')->name('store');
         # リザルト更新
         Route::post('result/update', 'result_update')->name('result/update');
         # デッキ更新

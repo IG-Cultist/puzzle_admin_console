@@ -6,6 +6,7 @@ use App\Http\Resources\BattleModeResource;
 use App\Http\Resources\DeckResource;
 use App\Http\Resources\DefenseDeckResource;
 use App\Http\Resources\ResultResource;
+use App\Http\Resources\RivalResource;
 use App\Http\Resources\UsableCardResource;
 use App\Http\Resources\UsedCardResource;
 use App\Models\BattleMode;
@@ -18,6 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Mockery\Exception;
+use PHPUnit\Framework\Constraint\Count;
 
 class BattleModeController extends Controller
 {
@@ -77,12 +79,33 @@ class BattleModeController extends Controller
     }
 
     # ======================
-    # 防衛デッキ枚数検索処理
+    # 戦闘可能ユーザ取得処理
     # ======================
-    public function defenceDeckCount_show(Request $request)
+    public function rivals_get()
     {
-        $deck = DefenseDeck::where('user_id', '=', $request->user_id)->orderBy('id')->get();
-        return response()->json(DefenseDeckResource::collection($deck));   #collectionで複数所得
+        # 取得ライバルID送信用変数
+        $cnt = 0;
+
+        # DBからユーザIDのカウントを取得
+        $result = DefenseDeck::select('user_id')
+            ->selectRaw('COUNT(user_id) as count_userId')
+            ->groupBy('user_id')->get();
+
+        # 結果の中で最も数値の大きいIDまでの範囲で整数を代入
+        $numbers = range(1, count($result));
+
+        # 値をシャッフルする
+        shuffle($numbers);
+
+        # シャッフル後、上の3つを取得
+        foreach ($numbers as $number) {
+            $num[$cnt] = $number;
+            $cnt++;
+            if ($cnt == 3) { # 値が3つ代入されたらループを抜ける
+                break;
+            }
+        }
+        return response()->json($num);
     }
 
     # ======================
@@ -305,6 +328,37 @@ class BattleModeController extends Controller
                     }
                 } else { #存在していなかった場合、処理しない
                     return response()->json($validator->errors(), 400);
+                }
+            });
+            if (isset($response)) {
+                return $response;
+            }
+            return response()->json();
+        } catch (Exception $e) {
+            return response()->json($e, 500);
+        }
+    }
+
+    # ======================
+    # バトルモードプロフィール追加処理
+    # ======================
+    public function store(Request $request)
+    {
+        try {
+            //トランザクション処理
+            $response = DB::transaction(function () use ($request) {
+
+                # リクエストされたユーザID指定で取得
+                $user = BattleMode::where('user_id', '=', $request->user()->id)->get();
+
+                if (count($user) == 0) { #指定情報なかった場合
+                    # DBに追加
+                    BattleMode::create([
+                        'user_id' => $request->user()->id,
+                        'match_num' => 0,
+                        'last_match_at' => '',
+                        'point' => 0,
+                    ]);
                 }
             });
             if (isset($response)) {

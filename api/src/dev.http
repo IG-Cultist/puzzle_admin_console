@@ -67,6 +67,10 @@ GET http://localhost:8000/api/battleMode/defenceDeck/show
 Accept: application/json
 Authorization: Bearer 3|Xt6lri1apieCIbDqPq0eaEYVZbIwGG4zxV1eo030fb5475d7
 
+###ランダムライバル取得処理
+GET http://localhost:8000/api/battleMode/rivals/get
+Accept: application/json
+
 ###ユーザ登録
 POST http://localhost:8000/api/users/store
 Content-Type: application/json
@@ -152,6 +156,11 @@ GET http://localhost:8000/api/battleMode/deck/show
 Accept: application/json
 Authorization: Bearer 16|xJ8AdpN5V9fWB4uTfAlu6e6TAvazSqRz4En4ngoo132fbb07
 
+###バトルモードプロフィール追加処理
+POST http://localhost:8000/api/battleMode/store
+Accept: application/json
+Authorization: Bearer 9|n4ptV3A8ZTv9BryaRLsFwjff2LgeQ7DXPcaCwk7Ff14c46e5
+
 ###デッキ更新
 POST http://localhost:8000/api/battleMode/deck/update
 Content-Type: application/json
@@ -167,10 +176,13 @@ Authorization: Bearer 3|Xt6lri1apieCIbDqPq0eaEYVZbIwGG4zxV1eo030fb5475d7
 POST http://localhost:8000/api/battleMode/defenceDeck/update
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer 3|Xt6lri1apieCIbDqPq0eaEYVZbIwGG4zxV1eo030fb5475d7
+Authorization: Bearer 9|n4ptV3A8ZTv9BryaRLsFwjff2LgeQ7DXPcaCwk7Ff14c46e5
 
 {
-    "card1": "3"
+    "card1": "1",
+    "card2": "1",
+    "card3": "2",
+    "card4": "3"
 }
 
 ###使用済みカード消去
