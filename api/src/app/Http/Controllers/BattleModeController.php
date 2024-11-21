@@ -83,27 +83,27 @@ class BattleModeController extends Controller
     # ======================
     public function rivals_get()
     {
-        # 取得ライバルID送信用変数
-        $cnt = 0;
-
         # DBからユーザIDのカウントを取得
-        $result = DefenseDeck::select('user_id')
+        # サブクエリでユーザのカウントを取得
+        $sub = DefenseDeck::select('user_id')
             ->selectRaw('COUNT(user_id) as count_userId')
-            ->groupBy('user_id')->get();
+            ->groupBy('user_id');
 
-        # 結果の中で最も数値の大きいIDまでの範囲で整数を代入
-        $numbers = range(1, count($result));
+        # サブクエリで取得したカウントが4のもののみ取得する
+        $result = DB::query()->select('user_id')
+            ->fromSub($sub, 'sub')
+            ->where('count_userId', '=', 4)->get();
+
+        # 取得したIDをシャッフル用変数に代入
+        for ($i = 0; $i < count($result); $i++) {
+            $numbers[$i] = $result[$i];
+        }
 
         # 値をシャッフルする
         shuffle($numbers);
 
-        # シャッフル後、上の3つを取得
-        foreach ($numbers as $number) {
-            $num[$cnt] = $number;
-            $cnt++;
-            if ($cnt == 3) { # 値が3つ代入されたらループを抜ける
-                break;
-            }
+        for ($i = 0; $i < 3; $i++) {
+            $num[$i] = $numbers[$i];
         }
         return response()->json($num);
     }
