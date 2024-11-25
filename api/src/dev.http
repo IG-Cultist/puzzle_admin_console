@@ -1,37 +1,9 @@
-###ユーザ情報取得
-GET http://localhost:8000/api/users/1
-Accept: application/json
-
 ###ユーザ一覧取得
 GET http://localhost:8000/api/users
 Accept: application/json
 
-###メール一覧取得
-GET http://localhost:8000/api/mails
-Accept: application/json
-
-###ステージ一覧取得
-GET http://localhost:8000/api/stages
-Accept: application/json
-
-###アイテム一覧取得
-GET http://localhost:8000/api/items
-Accept: application/json
-
-###ドロップステージ一覧取得
-GET http://localhost:8000/api/drops
-Accept: application/json
-
-###使用可能ステージ一覧取得
-GET http://localhost:8000/api/usables
-Accept: application/json
-
 ###使用可能カード一覧取得
 GET http://localhost:8000/api/battleMode/usableCard
-Accept: application/json
-
-###実績一覧取得
-GET http://localhost:8000/api/Achievements
 Accept: application/json
 
 ###バトルモード検索結果取得
@@ -40,22 +12,6 @@ Accept: application/json
 
 ###バトルモード検索結果取得
 GET http://localhost:8000/api/battleMode/result/1
-Accept: application/json
-
-###所持アイテム検索結果取得
-GET http://localhost:8000/api/userItems/1
-Accept: application/json
-
-###受信メール検索結果取得
-GET http://localhost:8000/api/userMails/2
-Accept: application/json
-
-###所持実績検索結果取得
-GET http://localhost:8000/api/userAchievements/1
-Accept: application/json
-
-###フォロー検索結果取得
-GET http://localhost:8000/api/follows/1
 Accept: application/json
 
 ###使用済みカード検索結果取得
@@ -77,7 +33,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-    "name": "mogu"
+    "name": "dog"
 }
 
 ###ユーザ更新
@@ -99,56 +55,6 @@ Accept: application/json
     "item_id": "2",
     "use_item": "2",
     "get_item": "4"
-}
-
-###フォロー登録
-POST http://localhost:8000/api/follows/store
-Content-Type: application/json
-Accept: application/json
-
-{
-    "user_id": "1",
-    "follow_id": "50"
-}
-
-###フォロー解除
-POST http://localhost:8000/api/follows/destroy
-Content-Type: application/json
-Accept: application/json
-
-{
-    "user_id": "1",
-    "follow_id": "50"
-}
-
-###メール更新
-POST http://localhost:8000/api/mails/update
-Content-Type: application/json
-Accept: application/json
-
-{
-    "user_id": "1",
-    "mail_id": "4"
-}
-
-###ステージ更新
-POST http://localhost:8000/api/stages/update
-Content-Type: application/json
-Accept: application/json
-
-{
-    "id": "3"
-}
-
-###所持実績更新
-POST http://localhost:8000/api/userAchievement/update
-Content-Type: application/json
-Accept: application/json
-
-{
-    "user_id": "5",
-    "achievement_id": "3",
-    "progress": "14"
 }
 
 ###デッキ検索結果取得
@@ -227,7 +133,7 @@ Accept: application/json
 GET https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode/usableCard
 Accept: application/json
 
-###VM Show Show BattleMode Profile
+###VM Show BattleMode Profile
 GET https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode/show/3
 Accept: application/json
 
@@ -258,13 +164,30 @@ Authorization: Bearer 16|xJ8AdpN5V9fWB4uTfAlu6e6TAvazSqRz4En4ngoo132fbb07
 POST https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode/defenceDeck/update
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer 16|xJ8AdpN5V9fWB4uTfAlu6e6TAvazSqRz4En4ngoo132fbb07
+Authorization: Bearer 24|TPYCjyVoeUZemgt4yDLtokOxfjltZ5MVFUBqOdRQe3f8cad9
 
 {
-    "card4": "3"
+    "card1": "6",
+    "card2": "5",
+    "card3": "3",
+    "card4": "5"
 }
 
 ###ランダムライバル取得処理
 GET https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode/rivals/get
 Content-Type: application/json
 Accept: application/json
+
+###ユーザ登録(VM)
+POST https://api-deadlydraw.japaneast.cloudapp.azure.com/api/users/store
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name": "BloodIce"
+}
+
+###バトルモードプロフィール追加処理(VM)
+POST https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode/store
+Accept: application/json
+Authorization: Bearer 27|EpFnQNqdFgpqNNMhfiQ8hrqfqwgENe5Hj0YOITHo4ce4c925

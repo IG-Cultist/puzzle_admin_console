@@ -6,7 +6,6 @@ use App\Http\Resources\BattleModeResource;
 use App\Http\Resources\DeckResource;
 use App\Http\Resources\DefenseDeckResource;
 use App\Http\Resources\ResultResource;
-use App\Http\Resources\RivalResource;
 use App\Http\Resources\UsableCardResource;
 use App\Http\Resources\UsedCardResource;
 use App\Models\BattleMode;
@@ -19,14 +18,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Mockery\Exception;
-use PHPUnit\Framework\Constraint\Count;
 
 class BattleModeController extends Controller
 {
     # ======================
     # バトルモードプロフィール一覧取得処理
     # ======================
-    public function index(Request $request)
+    public function index()
     {
         $user = BattleMode::All();
         return response()->json(BattleModeResource::collection($user));   #collectionで複数所得
@@ -104,8 +102,10 @@ class BattleModeController extends Controller
 
         for ($i = 0; $i < 3; $i++) {
             $num[$i] = $numbers[$i];
+            $rivalDeck[$i] = DefenseDeck::where('user_id', '=', $num[$i]->user_id)->get();
         }
-        return response()->json($num);
+
+        return response()->json($rivalDeck);
     }
 
     # ======================
