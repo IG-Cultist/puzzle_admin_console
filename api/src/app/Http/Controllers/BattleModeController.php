@@ -100,9 +100,16 @@ class BattleModeController extends Controller
         # 値をシャッフルする
         shuffle($numbers);
 
+        $rivalDeck = array();
+        $cnt = 0;
         for ($i = 0; $i < 3; $i++) {
             $num[$i] = $numbers[$i];
-            $rivalDeck[$i] = DefenseDeck::where('user_id', '=', $num[$i]->user_id)->get();
+            $array1 = DefenseDeck::where('user_id', '=', $num[$i]->user_id)->get();
+            foreach ($array1 as $item) {
+                $rivalDeck[$cnt] = $item;
+                $cnt++;
+            }
+
         }
 
         return response()->json($rivalDeck);
