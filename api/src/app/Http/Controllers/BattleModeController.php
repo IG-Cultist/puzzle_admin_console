@@ -145,11 +145,25 @@ class BattleModeController extends Controller
                         'winner_id' => $request->user()->id,
                         'loser_id' => $request->battle_user_id
                     ]);
+                    $user = BattleMode::where('user_id', '=', $request->user()->id)->get();
+                    $user[0]['point'] += 50;
+                    $user[0]->save();
+
+                    $user = BattleMode::where('user_id', '=', $request->battle_user_id)->get();
+                    $user[0]['point'] -= 30;
+                    $user[0]->save();
                 } elseif ($request->judge == 0) { #0の場合ユーザの敗北
                     Result::create([
                         'winner_id' => $request->battle_user_id,
                         'loser_id' => $request->user()->id
                     ]);
+                    $user = BattleMode::where('user_id', '=', $request->battle_user_id)->get();
+                    $user[0]['point'] += 50;
+                    $user[0]->save();
+
+                    $user = BattleMode::where('user_id', '=', $request->user()->id)->get();
+                    $user[0]['point'] -= 30;
+                    $user[0]->save();
                 } else {
                     return response()->json($validator->errors(), 400);
                 }
