@@ -47,8 +47,6 @@ Route::prefix('battleMode')->name('battleMode.')->controller(BattleModeControlle
         Route::get('defenceDeckCount/show', 'defenceDeckCount_show')->name('defenceDeckCount/show');
         # バトルモードプロフィール一覧
         Route::get('', 'index')->name('index');
-        # ランダムなライバル3名取得処理
-        Route::get('rivals/get', 'rivals_get')->name('rivals/get');
     });
 
 # バトルモード更新グループ
@@ -74,6 +72,8 @@ Route::prefix('battleMode')->name('battleMode.')->controller(BattleModeControlle
         Route::get('usedCard/show', 'usedCard_show')->name('usedCard/show');
         # 防衛デッキ検索
         Route::get('defenceDeck/show', 'defenceDeck_show')->name('defenceDeck/show');
+        # ランダムなライバル3名取得処理
+        Route::get('rivals/get', 'rivals_get')->name('rivals/get');
     });
 
 # トークン生成

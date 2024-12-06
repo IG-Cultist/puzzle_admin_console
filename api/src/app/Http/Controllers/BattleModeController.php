@@ -79,9 +79,8 @@ class BattleModeController extends Controller
     # ======================
     # 戦闘可能ユーザ取得処理
     # ======================
-    public function rivals_get()
+    public function rivals_get(Request $request)
     {
-        # DBからユーザIDのカウントを取得
         # サブクエリでユーザのカウントを取得
         $sub = DefenseDeck::select('user_id')
             ->selectRaw('COUNT(user_id) as count_userId')
@@ -90,7 +89,7 @@ class BattleModeController extends Controller
         # サブクエリで取得したカウントが4のもののみ取得する
         $result = DB::query()->select('user_id')
             ->fromSub($sub, 'sub')
-            ->where('count_userId', '=', 4)->get();
+            ->where('count_userId', '=', 4)->where('user_id', '!=', $request->user()->id)->get();
 
         # 取得したIDをシャッフル用変数に代入
         for ($i = 0; $i < count($result); $i++) {
@@ -109,9 +108,7 @@ class BattleModeController extends Controller
                 $rivalDeck[$cnt] = $item;
                 $cnt++;
             }
-
         }
-
         return response()->json($rivalDeck);
     }
 
@@ -150,7 +147,7 @@ class BattleModeController extends Controller
                     $user[0]->save();
 
                     $user = BattleMode::where('user_id', '=', $request->battle_user_id)->get();
-                    $user[0]['point'] -= 30;
+                    $user[0]['point'] -= 20;
                     $user[0]->save();
                 } elseif ($request->judge == 0) { #0の場合ユーザの敗北
                     Result::create([
@@ -162,7 +159,7 @@ class BattleModeController extends Controller
                     $user[0]->save();
 
                     $user = BattleMode::where('user_id', '=', $request->user()->id)->get();
-                    $user[0]['point'] -= 30;
+                    $user[0]['point'] -= 20;
                     $user[0]->save();
                 } else {
                     return response()->json($validator->errors(), 400);

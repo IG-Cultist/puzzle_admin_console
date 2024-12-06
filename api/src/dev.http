@@ -7,12 +7,9 @@ GET http://localhost:8000/api/battleMode/usableCard
 Accept: application/json
 
 ###バトルモード検索結果取得
-GET http://localhost:8000/api/battleMode
+GET https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode/show
 Accept: application/json
-
-###バトルモード検索結果取得
-GET http://localhost:8000/api/battleMode/result/1
-Accept: application/json
+Authorization: Bearer 16|xJ8AdpN5V9fWB4uTfAlu6e6TAvazSqRz4En4ngoo132fbb07
 
 ###使用済みカード検索結果取得
 GET http://localhost:8000/api/battleMode/usedCard/1
@@ -26,6 +23,7 @@ Authorization: Bearer 3|Xt6lri1apieCIbDqPq0eaEYVZbIwGG4zxV1eo030fb5475d7
 ###ランダムライバル取得処理
 GET http://localhost:8000/api/battleMode/rivals/get
 Accept: application/json
+Authorization: Bearer 3|Xt6lri1apieCIbDqPq0eaEYVZbIwGG4zxV1eo030fb5475d7
 
 ###ユーザ登録
 POST http://localhost:8000/api/users/store
@@ -65,7 +63,7 @@ Authorization: Bearer 16|xJ8AdpN5V9fWB4uTfAlu6e6TAvazSqRz4En4ngoo132fbb07
 ###バトルモードプロフィール追加処理
 POST http://localhost:8000/api/battleMode/store
 Accept: application/json
-Authorization: Bearer 9|n4ptV3A8ZTv9BryaRLsFwjff2LgeQ7DXPcaCwk7Ff14c46e5
+Authorization: Bearer 16|xJ8AdpN5V9fWB4uTfAlu6e6TAvazSqRz4En4ngoo132fbb07
 
 ###デッキ更新
 POST http://localhost:8000/api/battleMode/deck/update
@@ -190,4 +188,4 @@ Accept: application/json
 ###バトルモードプロフィール追加処理(VM)
 POST https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode/store
 Accept: application/json
-Authorization: Bearer 27|EpFnQNqdFgpqNNMhfiQ8hrqfqwgENe5Hj0YOITHo4ce4c925
+Authorization: Bearer 16|xJ8AdpN5V9fWB4uTfAlu6e6TAvazSqRz4En4ngoo132fbb07
