@@ -54,6 +54,8 @@ Route::prefix('battleMode')->name('battleMode.')->controller(BattleModeControlle
     ->middleware(NoCacheMiddleWare::class)->middleware('auth:sanctum')->group(function () {
         # バトルモードプロフィール追加
         Route::post('store', 'store')->name('store');
+        # バトルモードプロフィール更新
+        Route::post('update', 'update')->name('update');
         # リザルト更新
         Route::post('result/update', 'result_update')->name('result/update');
         # デッキ更新

@@ -373,10 +373,45 @@ class BattleModeController extends Controller
                     # DBに追加
                     BattleMode::create([
                         'user_id' => $request->user()->id,
+                        'name' => 'NoName',
+                        'icon_name' => 'icon000',
                         'match_num' => 0,
                         'last_match_at' => '',
                         'point' => 0,
                     ]);
+                }
+            });
+            if (isset($response)) {
+                return $response;
+            }
+            return response()->json();
+        } catch (Exception $e) {
+            return response()->json($e, 500);
+        }
+    }
+
+    # ======================
+    # バトルモードプロフィール更新処理
+    # ======================
+    public function update(Request $request)
+    {
+        try {
+            $response = DB::transaction(function () use ($request) {
+                $validator = Validator::make($request->all(), [
+                    'name' => ['string'],
+                    'icon_name' => ['string'],
+                ]);
+
+                if ($validator->fails()) {
+                    return response()->json($validator->errors(), 400);
+                }
+                # リクエストされたユーザID指定で取得
+                $user = BattleMode::where('user_id', '=', $request->user()->id)->get();
+
+                if (count($user) != 0) { #指定情報が存在していた場合
+                    $user[0]['name'] = $request->name;
+                    $user[0]['icon_name'] = $request->icon_name;
+                    $user[0]->save();
                 }
             });
             if (isset($response)) {
