@@ -16,6 +16,8 @@ class BattleModeResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'name' => $this->name,
+            'icon_name' => $this->icon_name,
             'user_id' => $this->user_id,
             'match_num' => $this->match_num,
             'last_match_at' => $this->last_match_at,

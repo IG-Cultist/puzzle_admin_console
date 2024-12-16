@@ -76,6 +76,9 @@ Route::prefix('battleMode')->name('battleMode.')->controller(BattleModeControlle
         Route::get('defenceDeck/show', 'defenceDeck_show')->name('defenceDeck/show');
         # ランダムなライバル3名取得処理
         Route::get('rivals/get', 'rivals_get')->name('rivals/get');
+
+        # バトルモードプロフィール一覧
+        Route::get('load', 'load')->name('load');
     });
 
 # トークン生成

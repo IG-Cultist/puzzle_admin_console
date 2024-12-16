@@ -76,6 +76,16 @@ class BattleModeController extends Controller
         return response()->json(DefenseDeckResource::collection($deck));   #collectionで複数所得
     }
 
+
+    # ======================
+    # 防衛デッキ検索処理
+    # ======================
+    public function load(Request $request)
+    {
+        $deck = BattleMode::where('user_id', '=', $request->user()->id)->get();
+        return response()->json(BattleModeResource::collection($deck));   #collectionで複数所得
+    }
+
     # ======================
     # 戦闘可能ユーザ取得処理
     # ======================
