@@ -65,6 +65,17 @@ POST http://localhost:8000/api/battleMode/store
 Accept: application/json
 Authorization: Bearer 16|xJ8AdpN5V9fWB4uTfAlu6e6TAvazSqRz4En4ngoo132fbb07
 
+###バトルモードプロフィール追加処理
+POST http://localhost:8000/api/battleMode/update
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 7|NrhOEeqGXA6UXsJovpE5YyHslYSZMFl6DFpaVyTV2bdc8aff
+
+{
+    "name": "ULTRAIGC",
+    "icon_name": "icon003"
+}
+
 ###デッキ更新
 POST http://localhost:8000/api/battleMode/deck/update
 Content-Type: application/json
