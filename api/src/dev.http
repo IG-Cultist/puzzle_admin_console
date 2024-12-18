@@ -11,6 +11,10 @@ GET https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode/show
 Accept: application/json
 Authorization: Bearer 16|xJ8AdpN5V9fWB4uTfAlu6e6TAvazSqRz4En4ngoo132fbb07
 
+###バトルモード複数検索結果取得
+GET http://localhost:8000/api/battleMode/multiShow?user_ids[]=1&user_ids[]=2&user_ids[]=3
+Accept: application/json
+
 ###使用済みカード検索結果取得
 GET http://localhost:8000/api/battleMode/usedCard/1
 Accept: application/json

@@ -47,6 +47,8 @@ Route::prefix('battleMode')->name('battleMode.')->controller(BattleModeControlle
         Route::get('defenceDeckCount/show', 'defenceDeckCount_show')->name('defenceDeckCount/show');
         # バトルモードプロフィール一覧
         Route::get('', 'index')->name('index');
+        # ユーザ検索
+        Route::get('multiShow', 'multiShow')->name('multiShow');
     });
 
 # バトルモード更新グループ

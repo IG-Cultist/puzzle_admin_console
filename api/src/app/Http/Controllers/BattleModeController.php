@@ -49,6 +49,22 @@ class BattleModeController extends Controller
     }
 
     # ======================
+    # バトルモード複数プロフィール検索処理
+    # ======================
+    public function multiShow(Request $request)
+    {
+        $result = array();
+        $cnt = 0;
+
+        foreach ($request->user_ids as $userID) {
+            $user = BattleMode::where('user_id', '=', $userID)->get();
+            $result[$cnt] = $user;
+            $cnt++;
+        }
+        return response()->json($result);
+    }
+
+    # ======================
     # デッキ検索処理
     # ======================
     public function deck_show(Request $request)
