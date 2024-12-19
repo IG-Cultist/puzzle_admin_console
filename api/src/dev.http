@@ -204,3 +204,14 @@ Accept: application/json
 POST https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode/store
 Accept: application/json
 Authorization: Bearer 16|xJ8AdpN5V9fWB4uTfAlu6e6TAvazSqRz4En4ngoo132fbb07
+
+###バトルモードプロフィール更新処理(VM)
+POST https://api-deadlydraw.japaneast.cloudapp.azure.com/api/battleMode/update
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 27|EpFnQNqdFgpqNNMhfiQ8hrqfqwgENe5Hj0YOITHo4ce4c925
+
+{
+    "name": "BloodIce",
+    "icon_name": "icon002"
+}

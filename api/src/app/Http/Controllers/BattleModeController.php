@@ -174,6 +174,9 @@ class BattleModeController extends Controller
 
                     $user = BattleMode::where('user_id', '=', $request->battle_user_id)->get();
                     $user[0]['point'] -= 20;
+                    if ($user[0]['point'] < 0) {
+                        $user[0]['point'] = 0;
+                    }
                     $user[0]->save();
                 } elseif ($request->judge == 0) { #0の場合ユーザの敗北
                     Result::create([
@@ -186,6 +189,10 @@ class BattleModeController extends Controller
 
                     $user = BattleMode::where('user_id', '=', $request->user()->id)->get();
                     $user[0]['point'] -= 20;
+                    if ($user[0]['point'] < 0) {
+                        $user[0]['point'] = 0;
+                    }
+
                     $user[0]->save();
                 } else {
                     return response()->json($validator->errors(), 400);
