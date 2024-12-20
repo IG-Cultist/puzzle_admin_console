@@ -57,7 +57,8 @@ class BattleModeController extends Controller
         $result = array();
         $cnt = 0;
 
-        foreach ($request->user_ids as $userID) {
+        $userIDList = explode(",", $request->user_ids);
+        foreach ($userIDList as $userID) {
             $user = BattleMode::where('user_id', '=', $userID)->first();
             $result[$cnt] = $user;
             $cnt++;
